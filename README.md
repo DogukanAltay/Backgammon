@@ -16,7 +16,7 @@ A short description of the motivation behind the creation and maintenance of the
 
 ## Built With
 
-* [JAVA](https://www.java.com/) - Core Algorithms
+* [JAVA](https://www.java.com/) - Core algorithms of the game
 
 
 ## API Reference
