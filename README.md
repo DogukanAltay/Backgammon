@@ -5,7 +5,7 @@ The classic board game that was found approximately 5,000 years ago. The objecti
 
 * [Mert Armağan Sarı](https://github.com/mertarmagan)
 * [Doğukan Altay](https://github.com/DogukanAltay)
-* [Ömer Sakarya](https://github.com/Mini0n92)
+* [Ömer Sakarya](https://github.com/ay0)
 * [Berkalp Yılmaz](https://github.com/Mini0n92)
 
 ## Synopsis
