@@ -4,7 +4,7 @@ The classic board game that was found approximately 5,000 years ago. The objecti
 
 ## Motivation
 
-Our motivation about doing this project is that understanding the fundamentals of object-oriented software design, the importance of the design process. 
+Our motivation about doing this project is that understanding the fundamentals of object-oriented software design, the importance of the design process. The project helps us to experience real-life project process with our teammates.
 
 ## Contributors
 
