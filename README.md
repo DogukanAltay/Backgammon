@@ -11,7 +11,7 @@ Our motivation about doing this project is that understanding the fundamentals o
 * [Mert Armağan Sarı](https://github.com/mertarmagan)
 * [Doğukan Altay](https://github.com/DogukanAltay)
 * [Ömer Sakarya](https://github.com/ay0)
-* [Berkalp Yılmaz](https://github.com/Mini0n92)
+* [Berkalp Yılmaz](https://github.com/berkalpyilmaz)
 
 
 ## Built With
