@@ -8,12 +8,16 @@ package backgammon;
 
 public class Checker extends GameObject{
     
-    private enum colorID{ WHITE, BLACK, RED, BLUE};
+    private Colors colorID;
     private boolean hitFlag;
     private boolean bearOffFlag;
     
     public Checker(){
         
+    }
+    
+    public Colors getColor(){
+        return colorID;
     }
     
     public void setColorID(){

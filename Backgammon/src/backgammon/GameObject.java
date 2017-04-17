@@ -6,9 +6,11 @@
 
 package backgammon;
 
-import java.awt.Image;
+import java.awt.*;
+import javax.swing.*;
 
-public class GameObject {
+
+public class GameObject extends JLabel{
     
     private int positionX;
     private int positionY;
