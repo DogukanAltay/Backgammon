@@ -1,12 +1,14 @@
 
 package backgammon;
 
+import javax.swing.JLayeredPane;
+
 /**
  *
  * @author mertarmagan
  */
 public class GamePanel extends javax.swing.JPanel {
-
+     
     public GamePanel() {
         initComponents();
     }
@@ -15,11 +17,14 @@ public class GamePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel1 = new javax.swing.JLabel();
+        lp = new JLayeredPane();
+        board1 = new backgammon.Board();
 
-        jLayeredPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(1500, 1000));
+
+        lp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lp.setMaximumSize(new java.awt.Dimension(1024, 804));
+        lp.setMinimumSize(new java.awt.Dimension(1024, 804));
         Slot slot1 = new Slot();
         Slot slot2 = new Slot();
         Slot slot3 = new Slot();
@@ -27,45 +32,66 @@ public class GamePanel extends javax.swing.JPanel {
         Slot slot5 = new Slot();
         Slot slot6 = new Slot();
 
-        slot1.setBounds(20, 380, 50, 200);
+        slot1.setBounds(118, 30, 56, 200);
         slot1.setOpaque(true);
-        slot2.setBounds(80, 380, 50, 200);
+        slot2.setBounds(175, 30, 56, 200);
         slot2.setOpaque(true);
-        slot3.setBounds(140, 380, 50, 200);
+        slot3.setBounds(232, 30, 56, 200);
         slot3.setOpaque(true);
-        slot4.setBounds(200, 380, 50, 200);
+        slot4.setBounds(289, 30, 56, 200);
         slot4.setOpaque(true);
-        slot5.setBounds(260, 380, 50, 200);
+        slot5.setBounds(346, 30, 56, 200);
         slot5.setOpaque(true);
-        slot6.setBounds(320, 380, 50, 200);
+        slot6.setBounds(403, 30, 56, 200);
         slot6.setOpaque(true);
 
-        jLayeredPane1.add(slot1, new Integer(1), 0);
-        jLayeredPane1.add(slot2, new Integer(1), 0);
-        jLayeredPane1.add(slot3, new Integer(1), 0);
-        jLayeredPane1.add(slot4, new Integer(1), 0);
-        jLayeredPane1.add(slot5, new Integer(1), 0);
-        jLayeredPane1.add(slot6, new Integer(1), 0);
+        lp.add(slot1, new Integer(1), 0);
+        lp.add(slot2, new Integer(1), 0);
+        lp.add(slot3, new Integer(1), 0);
+        lp.add(slot4, new Integer(1), 0);
+        lp.add(slot5, new Integer(1), 0);
+        lp.add(slot6, new Integer(1), 0);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/board.jpg"))); // NOI18N
+        Slot slot7 = new Slot();
+        Slot slot8 = new Slot();
+        Slot slot9 = new Slot();
+        Slot slot10 = new Slot();
+        Slot slot11 = new Slot();
+        Slot slot12 = new Slot();
 
-        jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        slot7.setBounds(578, 30, 56, 200);
+        slot7.setOpaque(true);
+        slot8.setBounds(635, 30, 56, 200);
+        slot8.setOpaque(true);
+        slot9.setBounds(692, 30, 56, 200);
+        slot9.setOpaque(true);
+        slot10.setBounds(749, 30, 56, 200);
+        slot10.setOpaque(true);
+        slot11.setBounds(806, 30, 56, 200);
+        slot11.setOpaque(true);
+        slot12.setBounds(863, 30, 56, 200);
+        slot12.setOpaque(true);
 
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(278, 278, 278))
+        lp.add(slot7, new Integer(1), 0);
+        lp.add(slot8, new Integer(1), 0);
+        lp.add(slot9, new Integer(1), 0);
+        lp.add(slot10, new Integer(1), 0);
+        lp.add(slot11, new Integer(1), 0);
+        lp.add(slot12, new Integer(1), 0);
+
+        board1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/board.jpg"))); // NOI18N
+
+        lp.setLayer(board1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout lpLayout = new javax.swing.GroupLayout(lp);
+        lp.setLayout(lpLayout);
+        lpLayout.setHorizontalGroup(
+            lpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(board1, javax.swing.GroupLayout.PREFERRED_SIZE, 1022, Short.MAX_VALUE)
         );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(222, 222, 222))
+        lpLayout.setVerticalGroup(
+            lpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(board1, javax.swing.GroupLayout.PREFERRED_SIZE, 802, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -73,20 +99,21 @@ public class GamePanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 886, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 188, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
+                .addComponent(lp, javax.swing.GroupLayout.PREFERRED_SIZE, 1024, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(376, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addComponent(lp, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 196, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLayeredPane jLayeredPane1;
+    private backgammon.Board board1;
+    private javax.swing.JLayeredPane lp;
     // End of variables declaration//GEN-END:variables
 }

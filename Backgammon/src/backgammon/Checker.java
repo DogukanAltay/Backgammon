@@ -6,9 +6,15 @@ public class Checker extends GameObject{
     private Colors colorID;
     private boolean hitFlag;
     private boolean bearOffFlag;
+    private final int diameter = 50;
     
     public Checker(){
-
+        super();
+    }
+    
+    public Checker(int x, int y){
+        positionX = x;
+        positionY = y;
     }
     
     public Colors getColorID(){

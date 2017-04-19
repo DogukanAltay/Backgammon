@@ -10,7 +10,11 @@ import javax.swing.*;
  */
 public class Slot extends GameObject{
     
-    int x,y;
+    private int x;
+    private int y;
+    private int width;   
+    private int height;
+
     Stack<Checker> whiteStack = new Stack<Checker>();
     Stack<Checker> blackStack = new Stack<Checker>();
     
@@ -18,10 +22,12 @@ public class Slot extends GameObject{
         super();
     }
     
-    public Slot(int x, int y){
+    public Slot(int x, int y, int width, int height){
         super();
         this.x = x;
         this.y = y;
+        this.width  = width;
+        this.height = height;
     }
     
     public void addChecker(Checker a){
@@ -31,7 +37,7 @@ public class Slot extends GameObject{
             System.out.println("White Checker added");
         }   
         else{
-            blackStack.add(a);
+            blackStack.push(a);
             System.out.println("Black Checker added.");
         }
                     
@@ -50,18 +56,11 @@ public class Slot extends GameObject{
         
         return whiteStack.empty();
     }
+    
     public boolean isBlackEmpty(){
         
         return blackStack.empty();
     }
-    
-    public void paintComponent(Graphics g){
-        
-        g.setColor(Color.BLACK);
-        g.fillRect(x, y, 50, 200);
-            
-    }
-    
     
     
 }

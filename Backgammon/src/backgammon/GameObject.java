@@ -12,9 +12,8 @@ import javax.swing.*;
 
 public class GameObject extends JLabel{
     
-    private int positionX;
-    private int positionY;
-    private Image objectImage; 
+    protected int positionX;
+    protected int positionY;
     
     public GameObject(){
         

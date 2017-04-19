@@ -22,7 +22,7 @@ public class testBoard {
         f.add(gp);
         
         //f.getContentPane().add(gamePanel);
-        f.setSize(new Dimension(1000, 1000));
+        f.setSize(new Dimension(1500, 1000));
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
