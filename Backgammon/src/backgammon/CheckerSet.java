@@ -11,7 +11,21 @@ public class CheckerSet extends GameObject{
     
     public CheckerSet(){
         
-        checkerSet = new ArrayList<Checker>(30);
+        checkerSet = new ArrayList<Checker>(15);
+        
+        for(int i = 0; i<15; i++){
+            Checker chkr = new Checker();
+            
+            checkerSet.add(chkr);
+
+            chkr.setColorID(colorID);
+        }
+        
+    }
+    public CheckerSet(Colors colorID){
+        this.colorID = colorID;
+        
+        checkerSet = new ArrayList<Checker>(15);
         
         for(int i = 0; i<15; i++){
             Checker chkr = new Checker();
@@ -31,13 +45,13 @@ public class CheckerSet extends GameObject{
         return colorID;
     }
     
-    public void setColorID(Colors colorID){
-        
-        for(int i = 0; i<15; i++){
-            
-            checkerSet.get(i).setColorID(colorID);
-        }
-    }
+//    public void setColorID(Colors colorID){
+//        
+//        for(int i = 0; i<15; i++){
+//            
+//            checkerSet.get(i).setColorID(colorID);
+//        }
+//    }
     
     public String getListID(){
         return listID;

@@ -21,7 +21,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Component id="lp" min="-2" pref="1024" max="-2" attributes="0"/>
               <EmptySpace pref="376" max="32767" attributes="0"/>
@@ -30,9 +30,9 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <Component id="lp" min="-2" pref="804" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="196" max="32767" attributes="0"/>
+              <EmptySpace pref="196" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,24 +54,24 @@
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JLayeredPane()"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="Slot slot1 = new Slot();&#xa;Slot slot2 = new Slot();&#xa;Slot slot3 = new Slot();&#xa;Slot slot4 = new Slot();&#xa;Slot slot5 = new Slot();&#xa;Slot slot6 = new Slot();&#xa;&#xa;slot1.setBounds(118, 30, 56, 200);&#xa;slot1.setOpaque(true);&#xa;slot2.setBounds(175, 30, 56, 200);&#xa;slot2.setOpaque(true);&#xa;slot3.setBounds(232, 30, 56, 200);&#xa;slot3.setOpaque(true);&#xa;slot4.setBounds(289, 30, 56, 200);&#xa;slot4.setOpaque(true);&#xa;slot5.setBounds(346, 30, 56, 200);&#xa;slot5.setOpaque(true);&#xa;slot6.setBounds(403, 30, 56, 200);&#xa;slot6.setOpaque(true);&#xa;&#xa;lp.add(slot1, new Integer(1), 0);&#xa;lp.add(slot2, new Integer(1), 0);&#xa;lp.add(slot3, new Integer(1), 0);&#xa;lp.add(slot4, new Integer(1), 0);&#xa;lp.add(slot5, new Integer(1), 0);&#xa;lp.add(slot6, new Integer(1), 0);&#xa;&#xa;Slot slot7 = new Slot();&#xa;Slot slot8 = new Slot();&#xa;Slot slot9 = new Slot();&#xa;Slot slot10 = new Slot();&#xa;Slot slot11 = new Slot();&#xa;Slot slot12 = new Slot();&#xa;&#xa;slot7.setBounds(578, 30, 56, 200);&#xa;slot7.setOpaque(true);&#xa;slot8.setBounds(635, 30, 56, 200);&#xa;slot8.setOpaque(true);&#xa;slot9.setBounds(692, 30, 56, 200);&#xa;slot9.setOpaque(true);&#xa;slot10.setBounds(749, 30, 56, 200);&#xa;slot10.setOpaque(true);&#xa;slot11.setBounds(806, 30, 56, 200);&#xa;slot11.setOpaque(true);&#xa;slot12.setBounds(863, 30, 56, 200);&#xa;slot12.setOpaque(true);&#xa;&#xa;lp.add(slot7, new Integer(1), 0);&#xa;lp.add(slot8, new Integer(1), 0);&#xa;lp.add(slot9, new Integer(1), 0);&#xa;lp.add(slot10, new Integer(1), 0);&#xa;lp.add(slot11, new Integer(1), 0);&#xa;lp.add(slot12, new Integer(1), 0);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="b.initSlots();&#xa;b.initCheckers();&#xa;ArrayList&lt;Slot&gt; slotSet1 = b.getSlotSet1();&#xa;&#xa;//Checker chc = new Checker();&#xa;//chc.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/images/checkerBlack.jpg&quot;)));&#xa;&#xa;for(int i = 0; i&lt;slotSet1.size(); i++){&#xa;    lp.add(slotSet1.get(i), new Integer(1), 0);&#xa;}&#xa;&#xa;//lp.add(b.chc, new Integer(0), 0);&#xa;&#xa;lp.add(b.getCheckerSet1().getChecker(0),new Integer(2), 0);"/>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="GamePanel_jLayeredPane1"/>
       </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="board1" alignment="0" pref="1022" max="32767" attributes="0"/>
+              <Component id="b" alignment="0" pref="1022" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="board1" alignment="0" pref="802" max="32767" attributes="0"/>
+              <Component id="b" alignment="0" pref="802" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="backgammon.Board" name="board1">
+        <Component class="backgammon.Board" name="b">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/board.jpg"/>

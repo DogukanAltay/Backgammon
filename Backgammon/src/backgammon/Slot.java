@@ -34,7 +34,8 @@ public class Slot extends GameObject{
         
         if(a.getColorID() == Colors.WHITE){
             whiteStack.push(a);
-            System.out.println("White Checker added");
+            
+            System.out.println(whiteStack.get(0).diameter+ "a.dm: " + a.diameter + "White Checker added");
         }   
         else{
             blackStack.push(a);
@@ -62,5 +63,5 @@ public class Slot extends GameObject{
         return blackStack.empty();
     }
     
-    
+   
 }
