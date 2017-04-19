@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jLayeredPane1" min="-2" pref="886" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jLayeredPane1" min="-2" pref="666" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JLayeredPane" name="jLayeredPane1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[1200, 600]"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="Slot slot1 = new Slot();&#xd;&#xa;Slot slot2 = new Slot();&#xd;&#xa;Slot slot3 = new Slot();&#xd;&#xa;Slot slot4 = new Slot();&#xd;&#xa;Slot slot5 = new Slot();&#xd;&#xa;Slot slot6 = new Slot();&#xd;&#xa;&#xd;&#xa;slot1.setBounds(20, 380, 50, 200);&#xd;&#xa;slot1.setOpaque(true);&#xd;&#xa;slot2.setBounds(80, 380, 50, 200);&#xd;&#xa;slot2.setOpaque(true);&#xd;&#xa;slot3.setBounds(140, 380, 50, 200);&#xd;&#xa;slot3.setOpaque(true);&#xd;&#xa;slot4.setBounds(200, 380, 50, 200);&#xd;&#xa;slot4.setOpaque(true);&#xd;&#xa;slot5.setBounds(260, 380, 50, 200);&#xd;&#xa;slot5.setOpaque(true);&#xd;&#xa;slot6.setBounds(320, 380, 50, 200);&#xd;&#xa;slot6.setOpaque(true);&#xd;&#xa;&#xd;&#xa;jLayeredPane1.add(slot1, new Integer(1), 0);&#xd;&#xa;jLayeredPane1.add(slot2, new Integer(1), 0);&#xd;&#xa;jLayeredPane1.add(slot3, new Integer(1), 0);&#xd;&#xa;jLayeredPane1.add(slot4, new Integer(1), 0);&#xd;&#xa;jLayeredPane1.add(slot5, new Integer(1), 0);&#xd;&#xa;jLayeredPane1.add(slot6, new Integer(1), 0);&#xd;&#xa;"/>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="GamePanel_jLayeredPane1"/>
+      </AuxValues>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="278" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/board.jpg"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

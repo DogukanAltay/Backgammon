@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package backgammon;
 
@@ -13,22 +8,30 @@ public class Checker extends GameObject{
     private boolean bearOffFlag;
     
     public Checker(){
-        
+
     }
     
-    public Colors getColor(){
+    public Colors getColorID(){
         return colorID;
     }
     
-    public void setColorID(){
-        
+    public void setColorID(Colors colorID){
+        this.colorID = colorID;
     }
     
-    public void setHitFlag(){
-        
+    public boolean getHitFlag(){
+        return hitFlag;
     }
     
-    public void setBearOffFlag(){
-        
+    public void setHitFlag(boolean hitFlag){
+        this.hitFlag = hitFlag;
+    }
+    
+    public boolean getBearOffFlag(){
+        return bearOffFlag;
+    }
+    
+    public void setBearOffFlag(boolean bearOffFlag){
+        this.bearOffFlag = bearOffFlag;
     }
 }

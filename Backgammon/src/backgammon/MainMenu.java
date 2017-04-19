@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package backgammon;
 
 import javax.swing.JPanel;
@@ -34,7 +30,7 @@ public class MainMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(350, 200));
 
-        mainPanel.setBackground(new java.awt.Color(204, 219, 220));
+        mainPanel.setBackground(new java.awt.Color(60, 132, 62));
         mainPanel.setPreferredSize(new java.awt.Dimension(1158, 598));
 
         createGame.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
@@ -87,17 +83,13 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        backgammonGame.setFont(new java.awt.Font("Lithos Pro Regular", 0, 40)); // NOI18N
+        backgammonGame.setFont(new java.awt.Font("Lithos Pro Regular", 0, 50)); // NOI18N
         backgammonGame.setText("Backgammon Game");
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap(372, Short.MAX_VALUE)
-                .addComponent(backgammonGame)
-                .addGap(360, 360, 360))
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(474, 474, 474)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -107,13 +99,17 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(credits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addContainerGap(322, Short.MAX_VALUE)
+                .addComponent(backgammonGame)
+                .addGap(303, 303, 303))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(74, 74, 74)
                 .addComponent(backgammonGame, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
+                .addGap(73, 73, 73)
                 .addComponent(createGame)
                 .addGap(18, 18, 18)
                 .addComponent(howToPlay)

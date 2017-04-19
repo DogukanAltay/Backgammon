@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package backgammon;
 
 import javax.swing.JFrame;
@@ -36,7 +32,7 @@ public class SetGameMenu extends javax.swing.JPanel {
         round3Btn = new javax.swing.JButton();
         round5Btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        playButton = new javax.swing.JButton();
         playerIDLabel1 = new javax.swing.JLabel();
         playerIDTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -94,10 +90,15 @@ public class SetGameMenu extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
         jLabel1.setText("Round Number:");
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        jButton4.setText("PLAY!");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.setFocusPainted(false);
+        playButton.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        playButton.setText("PLAY!");
+        playButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        playButton.setFocusPainted(false);
+        playButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playButtonActionPerformed(evt);
+            }
+        });
 
         playerIDLabel1.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
         playerIDLabel1.setText("Player2 ID:");
@@ -162,7 +163,7 @@ public class SetGameMenu extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton4)
+                                .addComponent(playButton)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(playerIDLabel)
                                     .addGap(18, 18, 18)
@@ -210,7 +211,7 @@ public class SetGameMenu extends javax.swing.JPanel {
                     .addComponent(round5Btn)
                     .addComponent(jLabel1))
                 .addGap(53, 53, 53)
-                .addComponent(jButton4)
+                .addComponent(playButton)
                 .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -263,6 +264,11 @@ public class SetGameMenu extends javax.swing.JPanel {
         round3Btn.setEnabled(true);
         round5Btn.setEnabled(false);
     }//GEN-LAST:event_round5BtnActionPerformed
+
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_playButtonActionPerformed
     
     public void setMainMenu(JPanel mainPanel){      
        this.mainPanel =  mainPanel;
@@ -276,11 +282,11 @@ public class SetGameMenu extends javax.swing.JPanel {
     private javax.swing.JButton back;
     private javax.swing.JComboBox<String> colorPlayer1;
     private javax.swing.JComboBox<String> colorPlayer2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton playButton;
     private javax.swing.JLabel playerIDLabel;
     private javax.swing.JLabel playerIDLabel1;
     private javax.swing.JTextField playerIDTextField;

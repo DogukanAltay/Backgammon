@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package backgammon;
 
@@ -21,7 +16,7 @@ public class Backgammon {
         Checker chk = new Checker();
         CheckerSet set1 = new CheckerSet();
         
-        Checker chk2 = set1.getChecker();       
+        Checker chk2 = set1.getChecker(0);       
                 
         die1.roll();
         die2.roll();

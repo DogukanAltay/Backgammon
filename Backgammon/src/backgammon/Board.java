@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package backgammon;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.*;
 import javax.swing.*;
 
 /**
@@ -16,19 +9,24 @@ import javax.swing.*;
  */
 public class Board extends GameObject{
     
-    private BufferedImage image;
-    private final int WIDTH = 800;
+    //private BufferedImage image;
+    private Icon image;
+    private JLabel lblIcon;
+    private final int WIDTH = 1000;
     private final int HEIGHT = 800;
             
     public Board(){
         super();
+        image = new ImageIcon("C:\\Users/merta/Desktop/Backgammon-master/Backgammon/src/images/board.jpg");
+        lblIcon = new JLabel(image);
+        
     }
     
-    public void paintComponent(Graphics g){
+    /*public void paintComponent(Graphics g){
         
         g.setColor(Color.RED);
         g.fillRect(0,0,WIDTH,HEIGHT);
   
-    }
+    }*/
     
 }
