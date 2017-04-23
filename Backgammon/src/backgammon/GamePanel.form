@@ -54,7 +54,7 @@
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JLayeredPane()"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="b.initSlots();&#xa;b.initCheckers();&#xa;ArrayList&lt;Slot&gt; slotSet1 = b.getSlotSet1();&#xa;&#xa;Checker chc = new Checker();&#xa;//chc.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/images/checkerBlack.jpg&quot;)));&#xa;&#xa;//for(int i = 0; i&lt;slotSet1.size(); i++){&#xa;  //  lp.add(slotSet1.get(i), new Integer(1), 0);&#xa;//}&#xa;&#xa;lp.add(chc, new Integer(0), 0);&#xa;&#xa;lp.add(b.getCheckerSet1().getChecker(0),new Integer(2), 0);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="b.initSlots();&#xa;b.initCheckers();&#xa;ArrayList&lt;Slot&gt; slotSet1 = b.getSlotSet1();&#xa;&#xa;Checker chc = new Checker(100,100);&#xa;//chc.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/images/checkerBlack.jpg&quot;)));&#xa;&#xa;for(int i = 0; i&lt;slotSet1.size(); i++){&#xa;    lp.add(slotSet1.get(i), new Integer(1), 0);&#xa;}&#xa;&#xa;lp.add(chc, new Integer(0), 0);&#xa;&#xa;lp.add(b.getCheckerSet1().getChecker(0),new Integer(2), 0);"/>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="GamePanel_jLayeredPane1"/>
       </AuxValues>
 

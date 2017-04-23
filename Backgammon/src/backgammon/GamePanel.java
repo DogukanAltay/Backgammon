@@ -30,12 +30,12 @@ public class GamePanel extends javax.swing.JPanel {
         b.initCheckers();
         ArrayList<Slot> slotSet1 = b.getSlotSet1();
 
-        Checker chc = new Checker();
+        Checker chc = new Checker(100,100);
         //chc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkerBlack.jpg")));
 
-        //for(int i = 0; i<slotSet1.size(); i++){
-            //  lp.add(slotSet1.get(i), new Integer(1), 0);
-            //}
+        for(int i = 0; i<slotSet1.size(); i++){
+            lp.add(slotSet1.get(i), new Integer(1), 0);
+        }
 
         lp.add(chc, new Integer(0), 0);
 

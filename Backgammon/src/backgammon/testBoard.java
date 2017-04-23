@@ -16,9 +16,6 @@ public class testBoard {
         
         GamePanel gp = new GamePanel();
         
-        //Board bb = new Board();
-        //Slot sl;
-        
         f.add(gp);
         
         //f.getContentPane().add(gamePanel);

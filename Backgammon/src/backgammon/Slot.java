@@ -35,13 +35,13 @@ public class Slot extends GameObject{
         if(a.getColorID() == Colors.WHITE){
             whiteStack.push(a);
             
-            System.out.println(whiteStack.get(0).diameter+ "a.dm: " + a.diameter + "White Checker added");
+            //System.out.println(whiteStack.get(0).diameter+ "a.dm: " + a.diameter + "White Checker added");
+            System.out.println("White Checker added");
         }   
         else{
             blackStack.push(a);
             System.out.println("Black Checker added.");
-        }
-                    
+        }                  
     }
     
     public Checker popChecker(Colors color){
@@ -66,8 +66,20 @@ public class Slot extends GameObject{
     
     public void paintComponent(Graphics g){
         
+        g.setColor(Color.GREEN);       
         g.drawRect(0,0,width,height);
-        //g.setColor(Color.BLUE);
+        Checker c = new Checker(0,0);
+        c.paintComponent(g);
+        Checker c1 = new Checker(0,50);
+        c1.paintComponent(g);
+        Checker c2 = new Checker(0,100);
+        c2.paintComponent(g);
+        Checker c3 = new Checker(0,150);
+        c3.paintComponent(g);
+        Checker c4 = new Checker(0,200);
+        c4.paintComponent(g);
+        Checker c5 = new Checker(0,250);
+        c5.paintComponent(g);
     }
    
 }

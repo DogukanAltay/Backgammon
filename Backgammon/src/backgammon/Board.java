@@ -1,6 +1,7 @@
 
 package backgammon;
 
+
 import static backgammon.Colors.WHITE;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -17,11 +18,11 @@ import javax.swing.*;
 public class Board extends GameObject{
     
     //private BufferedImage image;
-    private Icon image;
-    private BufferedImage imaget;
-    private JLabel lblIcon;
+    //private Icon image;
+    private BufferedImage imageBoard;
     private final int WIDTH = 1000;
     private final int HEIGHT = 800;
+    
     private ArrayList<Slot> slotSet1;
     private ArrayList<Slot> slotSet2;
     private ArrayList<Slot> slotSet3;
@@ -32,9 +33,9 @@ public class Board extends GameObject{
     public Board(){
         super();
         //image = new ImageIcon("C:\\Users/merta/Desktop/Backgammon-master/Backgammon/src/images/board.jpg");
-        //lblIcon = new JLabel(image);
+        //lblIcon = new JLabel(image); 
        try {
-           imaget = ImageIO.read(new File("C:\\Users\\dogukan\\Desktop\\Bilkent\\Backgammon\\Backgammon\\Backgammon\\src\\images\\board.jpg"));
+           imageBoard = ImageIO.read(getClass().getResource("/images/board.jpg"));
        } catch (IOException e) {
            System.out.println("file error");
        }
@@ -43,7 +44,7 @@ public class Board extends GameObject{
     public void initSlots(){
         
         int slotWidth = 56;
-        int slotHeight = 200;
+        int slotHeight = 300;
         int slot1X = 578;
         int slot1Y = 30;
         
@@ -68,17 +69,12 @@ public class Board extends GameObject{
         
         ch1 = new CheckerSet(WHITE);
         slotSet1.get(0).addChecker(ch1.getChecker(0));
-        System.out.println(slotSet1.get(0).whiteStack.peek() + "AAA");
+        //System.out.println(slotSet1.get(0).whiteStack.peek() + "AAA");
         //slotSet1.get(0).whiteStack.peek().setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkerBlack.png")));
         //slotSet1.get(0).whiteStack.peek().setBounds(581, 30, 50, 50);
         slotSet1.get(0).whiteStack.peek().setLocation(0, 0);
         //slotSet1.get(0).whiteStack.peek().setLocation(560, 30);
         slotSet1.get(0).whiteStack.peek().setOpaque(true);
-        
-        
-        for(int i = 0; i<15; i++){
-            System.out.println(ch1.getChecker(i).num + " a");
-        }
         
     }
     
@@ -105,8 +101,8 @@ public class Board extends GameObject{
     @Override
     public void paintComponent(Graphics g){
         
-        g.drawImage(imaget,0,0,null);
-          
+        g.drawImage(imageBoard,0,0,null);
+        //slotSet1.get(0).whiteStack.peek().paintComponent(g);
     }
     
     
