@@ -63,5 +63,11 @@ public class Slot extends GameObject{
         return blackStack.empty();
     }
     
+    
+    public void paintComponent(Graphics g){
+        
+        g.drawRect(0,0,width,height);
+        //g.setColor(Color.BLUE);
+    }
    
 }

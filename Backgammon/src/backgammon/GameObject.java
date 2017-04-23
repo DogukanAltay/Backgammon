@@ -19,11 +19,10 @@ public class GameObject extends JLabel{
         
     }
     
-    public int draw (Image objectImage, int positionX, int positionY){
+    public void paintComponent (Graphics g){
         
         System.out.println(positionX + " " + positionY);
         
-        return 0;
     }
     
 }
