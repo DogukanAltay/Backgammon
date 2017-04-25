@@ -39,7 +39,7 @@ public class GamePanel extends javax.swing.JPanel {
 
         lp.add(chc, new Integer(0), 0);
 
-        lp.add(b.getCheckerSet1().getChecker(0),new Integer(2), 0);
+        //lp.add(b.getCheckerSet1().getChecker(0),new Integer(2), 0);
 
         lp.setLayer(b, javax.swing.JLayeredPane.DEFAULT_LAYER);
 

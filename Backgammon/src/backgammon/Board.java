@@ -31,9 +31,7 @@ public class Board extends GameObject{
     public  Checker chc;
     
     public Board(){
-        super();
-        //image = new ImageIcon("C:\\Users/merta/Desktop/Backgammon-master/Backgammon/src/images/board.jpg");
-        //lblIcon = new JLabel(image); 
+        super(); 
        try {
            imageBoard = ImageIO.read(getClass().getResource("/images/board.jpg"));
        } catch (IOException e) {
@@ -63,7 +61,7 @@ public class Board extends GameObject{
     }
     
     public void initCheckers(){
-        
+        /*
         //chc = new Checker();
         //chc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkerBlack.jpg")));
         
@@ -75,6 +73,9 @@ public class Board extends GameObject{
         slotSet1.get(0).whiteStack.peek().setLocation(0, 0);
         //slotSet1.get(0).whiteStack.peek().setLocation(560, 30);
         slotSet1.get(0).whiteStack.peek().setOpaque(true);
+        */
+        
+        
         
     }
     
