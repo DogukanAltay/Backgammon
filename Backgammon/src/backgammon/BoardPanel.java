@@ -41,11 +41,11 @@ public class BoardPanel extends JPanel{
         
     }
     
-    private void initComponents(){
+    public void initComponents(){
         
         lp = new JLayeredPane();
         
-        
+        lp.setLocation(0, 0);
         lp.setPreferredSize(new java.awt.Dimension(1024, 804));
         //lp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lp.setBorder(javax.swing.BorderFactory.createTitledBorder("asdadsaddadsadasdadsa"));
@@ -56,6 +56,7 @@ public class BoardPanel extends JPanel{
        } catch (IOException e) {
            System.out.println("file error");
        }
+        
         
         initSlots();
     
@@ -80,6 +81,11 @@ public class BoardPanel extends JPanel{
             slotSet1.get(i).setBounds(slot1X + (i * 57), 30, slotWidth, slotHeight);
             lp.add(slotSet1.get(i), new Integer(0),0);
         }
+        chc = new Checker();
+        chc.setOpaque(true);
+        chc.setBounds(slot1X+5, 30, 50,50);
+        lp.add(chc,new Integer(0), 0);
+       
         // ...
     }
     

@@ -10,7 +10,7 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class GameObject extends JLabel{
+public abstract class GameObject extends JLabel{
     
     protected int positionX;
     protected int positionY;
@@ -19,10 +19,5 @@ public class GameObject extends JLabel{
         
     }
     
-    public void paintComponent (Graphics g){
-        
-        System.out.println(positionX + " " + positionY);
-        
-    }
     
 }

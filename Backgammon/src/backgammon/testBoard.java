@@ -14,9 +14,9 @@ public class testBoard {
         
         JFrame f = new JFrame();
         
-        //GamePanel gp = new GamePanel();
-        BoardPanel gp = new BoardPanel();
-        
+        GamePanel gp = new GamePanel();
+        //BoardPanel gp = new BoardPanel();
+
         f.add(gp);
         
         //f.getContentPane().add(gamePanel);

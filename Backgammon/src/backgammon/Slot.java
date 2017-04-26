@@ -1,8 +1,13 @@
 package backgammon;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
+import static javax.swing.JLayeredPane.DRAG_LAYER;
 
 /**
  *
@@ -14,9 +19,10 @@ public class Slot extends GameObject{
     private int y;
     private int width;   
     private int height;
+    private Color color;
+    private boolean clicked;
 
-    Stack<Checker> whiteStack = new Stack<Checker>();
-    Stack<Checker> blackStack = new Stack<Checker>();
+    Stack<Checker> checkerStack = new Stack<Checker>();
     
     public Slot(){
         super();
@@ -28,47 +34,61 @@ public class Slot extends GameObject{
         this.y = y;
         this.width  = width;
         this.height = height;
+        color = Color.GREEN;
+        mouseActions();
     }
+    
+    public void mouseActions(){
+        addMouseListener(new MouseAdapter(){
+            public void mousePressed(MouseEvent me){
+            
+                if(clicked==false){
+                    setColor(Color.RED);
+                    popChecker();
+                    repaint();
+                    clicked = true;
+                }else{
+                    
+                    setColor(Color.GREEN);
+                    clicked = false;
+                    repaint();
+                }        
+            }
+                
+        });
+    }
+    
+    
     
     public void addChecker(Checker a){
         
-        if(a.getColorID() == Colors.WHITE){
-            whiteStack.push(a);
-            
-            //System.out.println(whiteStack.get(0).diameter+ "a.dm: " + a.diameter + "White Checker added");
-            System.out.println("White Checker added");
-        }   
-        else{
-            blackStack.push(a);
-            System.out.println("Black Checker added.");
-        }                  
+        checkerStack.push(a);
+        repaint();
     }
     
-    public Checker popChecker(Colors color){
+    public Checker popChecker(){
        
-        if(color == Colors.WHITE)
-            return whiteStack.pop();
-        else
-            return blackStack.pop();
-                                 
+        Checker a = checkerStack.pop();
+        remove(a);
+        repaint();
+        revalidate();
+        return a;
     }
     
-    public boolean isWhiteEmpty(){
+    public boolean isStackEmpty(){
         
-        return whiteStack.empty();
+        return checkerStack.empty();
     }
     
-    public boolean isBlackEmpty(){
-        
-        return blackStack.empty();
+    public void setColor(Color a){
+        color = a;
     }
-    
     
     public void paintComponent(Graphics g){
         
-        g.setColor(Color.GREEN);       
-        g.drawRect(0,0,width,height);
-        Checker c = new Checker(0,0);
+        g.setColor(color);       
+        g.drawRect(0,0,width-1,height-1);
+       /* Checker c = new Checker(0,0);
         c.paintComponent(g);
         Checker c1 = new Checker(0,50);
         c1.paintComponent(g);
@@ -79,7 +99,26 @@ public class Slot extends GameObject{
         Checker c4 = new Checker(0,200);
         c4.paintComponent(g);
         Checker c5 = new Checker(0,250);
-        c5.paintComponent(g);
+        c5.paintComponent(g);*/
+       
+       if(checkerStack.size()<7){
+           
+            for(int i=0;i<checkerStack.size();i++){
+           
+               checkerStack.get(i).setPosition(3,50*i);
+               checkerStack.get(i).paintComponent(g);
+               
+            }
+       }else{
+            for(int i=0;i<6;i++){
+           
+                checkerStack.get(i).setPosition(3,50*i);
+                checkerStack.get(i).paintComponent(g);
+                
+            }
+       }
+       
+       g.dispose();
     }
    
 }

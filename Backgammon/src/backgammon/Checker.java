@@ -33,11 +33,17 @@ public class Checker extends GameObject{
         positionY = y;
         
         try {
-           image = ImageIO.read(getClass().getResource("/images/checkerBlack.png"));
+          image = ImageIO.read(getClass().getResource("/images/checkerBlack.png"));
         } catch (IOException e) {
            System.out.println("file error");
         }
         //this.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkerBlack.jpg")));
+    
+    }
+    
+    public void setPosition(int x, int y){
+        positionX = x;
+        positionY = y;
     }
     
     public Colors getColorID(){
@@ -66,8 +72,9 @@ public class Checker extends GameObject{
     
     public void paintComponent(Graphics g){
         
+        //g.fillOval(positionX, positionY, diameter, diameter);
         //g.drawImage(image, 100, 100, diameter, diameter,null);
         g.drawImage(image, positionX, positionY, null);
-        
+        //g.dispose();
     }
 }
