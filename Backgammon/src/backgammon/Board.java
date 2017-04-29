@@ -53,7 +53,7 @@ public class Board extends GameObject{
         
         for(int i = 0; i<6; i++){
             
-            slotSet1.add(i, new Slot(slot1X + (i * 57), 30, slotWidth, slotHeight));
+            slotSet1.add(i, new Slot(slot1X + (i * 57), 30, slotWidth, slotHeight,));
             slotSet1.get(i).setOpaque(true);
             slotSet1.get(i).setBounds(slot1X + (i * 57), 30, slotWidth, slotHeight);
         }

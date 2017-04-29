@@ -15,6 +15,7 @@ import static javax.swing.JLayeredPane.DRAG_LAYER;
  */
 public class Slot extends GameObject{
     
+    GamePanel panel;
     private int x;
     private int y;
     private int width;   
@@ -28,33 +29,29 @@ public class Slot extends GameObject{
         super();
     }
     
-    public Slot(int x, int y, int width, int height){
+    public Slot(int x, int y, int width, int height, GamePanel panel){
         super();
         this.x = x;
         this.y = y;
         this.width  = width;
         this.height = height;
         color = Color.GREEN;
+        this.panel = panel;
         mouseActions();
     }
     
     public void mouseActions(){
         addMouseListener(new MouseAdapter(){
-            public void mousePressed(MouseEvent me){
-            
-                if(clicked==false){
-                    setColor(Color.RED);
-                    popChecker();
-                    repaint();
-                    clicked = true;
-                }else{
-                    
-                    setColor(Color.GREEN);
-                    clicked = false;
-                    repaint();
-                }        
+            public void mousePressed(MouseEvent me){  
+                setColor(Color.RED);
+                panel.repaint();
+                clicked = true;                      
             }
-                
+            public void mouseReleased(MouseEvent me){
+                setColor(Color.GREEN);
+                clicked = false;
+                panel.repaint();
+            }    
         });
     }
     
@@ -64,17 +61,29 @@ public class Slot extends GameObject{
         
         checkerStack.push(a);
         repaint();
+        panel.repaint();
+        revalidate();
     }
     
     public Checker popChecker(){
-       
-        Checker a = checkerStack.pop();
+       Checker a;
+        try{
+            a = checkerStack.pop();
+        }catch(EmptyStackException e){
+            panel.repaint();
+            revalidate();
+            return null;
+        }
         remove(a);
         repaint();
+        panel.repaint();
         revalidate();
         return a;
     }
     
+    public Checker peekChecker(){
+        return checkerStack.peek();
+    }
     public boolean isStackEmpty(){
         
         return checkerStack.empty();
@@ -83,7 +92,12 @@ public class Slot extends GameObject{
     public void setColor(Color a){
         color = a;
     }
-    
+    public boolean isClicked(){
+        return clicked;
+    }
+    public void setClicked(boolean b){
+        clicked = b;
+    }
     public void paintComponent(Graphics g){
         
         g.setColor(color);       
@@ -100,7 +114,7 @@ public class Slot extends GameObject{
         c4.paintComponent(g);
         Checker c5 = new Checker(0,250);
         c5.paintComponent(g);*/
-       
+      
        if(checkerStack.size()<7){
            
             for(int i=0;i<checkerStack.size();i++){
@@ -121,4 +135,11 @@ public class Slot extends GameObject{
        g.dispose();
     }
    
+    
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
 }

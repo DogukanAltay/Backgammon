@@ -19,12 +19,16 @@ public class GamePanel extends JPanel {
     private final int WIDTH = 1000;
     private final int HEIGHT = 800;
     
+    private Slot whiteBar, blackBar;
+    private Slot whiteStack, blackStack;
     private ArrayList<Slot> slotSet1;
     private ArrayList<Slot> slotSet2;
     private ArrayList<Slot> slotSet3;
     private ArrayList<Slot> slotSet4;
     private CheckerSet ch1;
-    public  Checker chc;
+    private Checker chc;
+    
+    private BoardInputManager mngr;
 
     public GamePanel() {
         try {
@@ -32,7 +36,9 @@ public class GamePanel extends JPanel {
        } catch (IOException e) {
            System.out.println("file error");
        }
+        mngr = new BoardInputManager();
         initComponents();
+        
     }
     
     
@@ -43,6 +49,11 @@ public class GamePanel extends JPanel {
         int slot1X = 578;
         int slot1Y = 30;
         
+        whiteBar = new Slot(517,150,slotWidth,200,this);        
+        blackBar = new Slot(517,350,slotWidth,200,this);
+        whiteStack = new Slot(946,30,slotWidth,slotHeight+25,this);
+        blackStack = new Slot(946,430,slotWidth,slotHeight+25,this);
+        
         slotSet1 = new ArrayList<Slot>(6);
         slotSet2 = new ArrayList<Slot>(6);
         slotSet3 = new ArrayList<Slot>(6);
@@ -50,25 +61,53 @@ public class GamePanel extends JPanel {
         
         for(int i = 0; i<6; i++){
             
-            slotSet1.add(i, new Slot(slot1X + (i * 57), 30, slotWidth, slotHeight));
+            
+            slotSet1.add(i, new Slot(slot1X + (i * 57), 30, slotWidth, slotHeight,this));
+            slotSet1.get(i).addMouseListener(mngr);
             slotSet1.get(i).setOpaque(true);
             slotSet1.get(i).setBounds(slot1X + (i * 57), 30, slotWidth, slotHeight);
-            lp.add(slotSet1.get(i), new Integer(0),0);
-                     
+            lp.add(slotSet1.get(i), new Integer(0),0);                    
         }
-         
+        blackBar.addMouseListener(mngr);
+        blackBar.setOpaque(true);
+        blackBar.setBounds(517,350,slotWidth,200);
+        lp.add(blackBar, new Integer(0), 0); 
+        
+        whiteBar.addMouseListener(mngr);
+        whiteBar.setOpaque(true);
+        whiteBar.setBounds(517,150,slotWidth,200);       
+        lp.add(whiteBar, new Integer(0), 0);
+        
+        whiteStack.addMouseListener(mngr);
+        whiteStack.setOpaque(true);
+        whiteStack.setBounds(946,30,slotWidth,slotHeight+25);       
+        lp.add(whiteStack, new Integer(0), 0);
+        
+        blackStack.addMouseListener(mngr);
+        blackStack.setOpaque(true);
+        blackStack.setBounds(946,430,slotWidth,slotHeight+25);
+        lp.add(blackStack, new Integer(0), 0); 
     }
     
     public void initCheckers(){
         
         for(int i=0;i<6;i++){
             
-            for(int j=0;j<9;j++){
+            for(int j=0;j<3;j++){
                 slotSet1.get(i).addChecker(new Checker());
             }
             
         }
         
+    }
+    
+    public void moveChecker(){
+        
+        
+    }
+    
+    public JLayeredPane getPane(){
+        return lp;
     }
     
     @SuppressWarnings("unchecked")

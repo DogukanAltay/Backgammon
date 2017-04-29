@@ -44,6 +44,9 @@ public class Checker extends GameObject{
     public void setPosition(int x, int y){
         positionX = x;
         positionY = y;
+        repaint();
+        revalidate();
+        
     }
     
     public Colors getColorID(){
@@ -75,6 +78,5 @@ public class Checker extends GameObject{
         //g.fillOval(positionX, positionY, diameter, diameter);
         //g.drawImage(image, 100, 100, diameter, diameter,null);
         g.drawImage(image, positionX, positionY, null);
-        //g.dispose();
     }
 }
