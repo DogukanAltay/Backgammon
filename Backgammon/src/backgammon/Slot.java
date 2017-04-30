@@ -16,12 +16,13 @@ import static javax.swing.JLayeredPane.DRAG_LAYER;
 public class Slot extends GameObject{
     
     GamePanel panel;
-    private int x;
-    private int y;
+    private int positionX;
+    private int positionY;
     private int width;   
     private int height;
     private Color color;
     private boolean clicked;
+    private boolean avaiable;
 
     Stack<Checker> checkerStack = new Stack<Checker>();
     
@@ -31,12 +32,25 @@ public class Slot extends GameObject{
     
     public Slot(int x, int y, int width, int height, GamePanel panel){
         super();
-        this.x = x;
-        this.y = y;
+        this.positionX = x;
+        this.positionY = y;
         this.width  = width;
         this.height = height;
         color = Color.GREEN;
         this.panel = panel;
+        avaiable = true;
+        mouseActions();
+    }
+    
+    public Slot(int x, int y, int width, int height, GamePanel panel, boolean avaiable){
+        super();
+        this.positionX = x;
+        this.positionY = y;
+        this.width  = width;
+        this.height = height;
+        color = Color.GREEN;
+        this.panel = panel;
+        this.avaiable = avaiable;
         mouseActions();
     }
     
@@ -81,26 +95,12 @@ public class Slot extends GameObject{
         return a;
     }
     
-    public Checker peekChecker(){
-        return checkerStack.peek();
-    }
-    public boolean isStackEmpty(){
-        
-        return checkerStack.empty();
-    }
-    
-    public void setColor(Color a){
-        color = a;
-    }
-    public boolean isClicked(){
-        return clicked;
-    }
-    public void setClicked(boolean b){
-        clicked = b;
-    }
     public void paintComponent(Graphics g){
         
-        g.setColor(color);       
+        if(avaiable == false){
+            g.setColor(Color.BLUE);
+        }else
+            g.setColor(color);    
         g.drawRect(0,0,width-1,height-1);
        /* Checker c = new Checker(0,0);
         c.paintComponent(g);
@@ -119,27 +119,56 @@ public class Slot extends GameObject{
            
             for(int i=0;i<checkerStack.size();i++){
            
-               checkerStack.get(i).setPosition(3,50*i);
-               checkerStack.get(i).paintComponent(g);
+               //checkerStack.get(i).setPosition(3,y+(50*i));
+               checkerStack.get(i).setOpaque(true);
+               checkerStack.get(i).setBounds(positionX, positionY+(50*i), 50, 50);
+               panel.getPane().add(checkerStack.get(i), new Integer(0),0);
+               
+               //checkerStack.get(i).paintComponent(g);
                
             }
        }else{
             for(int i=0;i<6;i++){
            
-                checkerStack.get(i).setPosition(3,50*i);
-                checkerStack.get(i).paintComponent(g);
+               //checkerStack.get(i).setPosition(3,y+(50*i));
+               checkerStack.get(i).setOpaque(true);
+               checkerStack.get(i).setBounds(positionX, positionY+(50*i), 50, 50);
+               panel.getPane().add(checkerStack.get(i), new Integer(0),0);
+                //checkerStack.get(i).paintComponent(g);
                 
             }
-       }
-       
+       }      
        g.dispose();
     }
    
+    public Checker peekChecker(){
+        return checkerStack.peek();
+    }
+    public boolean isStackEmpty(){
+        
+        return checkerStack.empty();
+    }
     
+    public void setColor(Color a){
+        color = a;
+    }
+    
+    public boolean isClicked(){
+        return clicked;
+    }
+    public void setClicked(boolean b){
+        clicked = b;
+    } 
     public int getX(){
-        return x;
+        return positionX;
     }
     public int getY(){
-        return y;
+        return positionY;
+    }
+    public boolean isAvaiable(){
+        return avaiable;
+    }
+    public void setAvaiable(boolean a){
+        avaiable = a;
     }
 }

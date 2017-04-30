@@ -27,14 +27,14 @@ public class BoardInputManager extends MouseAdapter {
     }
     public void mouseDragged(MouseEvent e){
         
-        temp.setPosition(e.getComponent().getX(),e.getComponent().getY());
+        temp.setPosition(e.getX(),e.getY());
         System.out.println("csc"+temp.positionX);   
     }
     
     public void mouseReleased(MouseEvent e){
        
-        
-        labelReleased.addChecker(labelPressed.popChecker());
+        if(labelReleased.isAvaiable())
+            labelReleased.addChecker(labelPressed.popChecker());
         System.out.println(labelReleased.getX());
     }
     public void mouseEntered(MouseEvent e) {

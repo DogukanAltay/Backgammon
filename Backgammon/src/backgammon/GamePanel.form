@@ -21,18 +21,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="lp" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="476" max="32767" attributes="0"/>
-          </Group>
+          <Component id="lp" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Component id="lp" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="196" max="32767" attributes="0"/>
-          </Group>
+          <Component id="lp" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -53,7 +47,7 @@
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JLayeredPane()"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="initSlots();&#xa;initCheckers();&#xa;&#xa;&#xa;//lp.add(b.getCheckerSet1().getChecker(0),new Integer(2), 0);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="initSlots();&#xa;initCheckers(Colors.WHITE,Colors.BLACK);&#xa;&#xa;&#xa;//lp.add(b.getCheckerSet1().getChecker(0),new Integer(2), 0);"/>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="GamePanel_jLayeredPane1"/>
       </AuxValues>
 

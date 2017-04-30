@@ -16,7 +16,7 @@ public class testBoard {
         
         GamePanel gp = new GamePanel();
         //BoardPanel gp = new BoardPanel();
-        gp.moveChecker();
+       // gp.setStackAvaiable(Colors.BLUE);
         f.add(gp);
         
         //f.getContentPane().add(gamePanel);

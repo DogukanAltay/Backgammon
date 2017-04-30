@@ -1,7 +1,9 @@
 
 package backgammon;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import static java.awt.PageAttributes.ColorType.COLOR;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +15,7 @@ import javax.swing.JLabel;
 public class Checker extends GameObject{
     
     private BufferedImage image;
+    private GamePanel panel;
     private Colors colorID;
     private boolean hitFlag;
     private boolean bearOffFlag;
@@ -28,12 +31,22 @@ public class Checker extends GameObject{
         }
     }
     
-    public Checker(int x, int y){
-        positionX = x;
-        positionY = y;
+    public Checker(Colors color, GamePanel panel){
         
+        this.panel = panel; 
+        colorID = color;
+        String pngPath;
+        if(colorID == Colors.WHITE)
+            pngPath = "/images/checkerWhite.png";
+        else if(colorID == Colors.BLUE)
+              pngPath = "/images/checkerBlue.png";
+        else if(colorID == Colors.BLACK)
+            pngPath = "/images/checkerblack.png";
+        else
+            pngPath = "/images/checkerRed.png";        
         try {
-          image = ImageIO.read(getClass().getResource("/images/checkerBlack.png"));
+          image = ImageIO.read(getClass().getResource(pngPath));
+            
         } catch (IOException e) {
            System.out.println("file error");
         }
@@ -45,6 +58,7 @@ public class Checker extends GameObject{
         positionX = x;
         positionY = y;
         repaint();
+        panel.repaint();
         revalidate();
         
     }
@@ -74,8 +88,8 @@ public class Checker extends GameObject{
     }
     
     public void paintComponent(Graphics g){
-        
-        //g.fillOval(positionX, positionY, diameter, diameter);
+        g.setColor(Color.RED);
+        //g.drawOval(positionX, positionY, diameter, diameter);
         //g.drawImage(image, 100, 100, diameter, diameter,null);
         g.drawImage(image, positionX, positionY, null);
     }

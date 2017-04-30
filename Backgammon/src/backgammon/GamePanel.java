@@ -25,8 +25,7 @@ public class GamePanel extends JPanel {
     private ArrayList<Slot> slotSet2;
     private ArrayList<Slot> slotSet3;
     private ArrayList<Slot> slotSet4;
-    private CheckerSet ch1;
-    private Checker chc;
+    private CheckerSet whiteSet, blackSet;
     
     private BoardInputManager mngr;
 
@@ -48,37 +47,68 @@ public class GamePanel extends JPanel {
         int slotHeight = 320;
         int slot1X = 578;
         int slot1Y = 30;
+        int slot2X = 118;
+        int slot2Y = 30;
+        int slot3X = 118;
+        int slot3Y = 453;
+        int slot4X = 577;
+        int slot4Y = 453;
         
-        whiteBar = new Slot(517,150,slotWidth,200,this);        
-        blackBar = new Slot(517,350,slotWidth,200,this);
-        whiteStack = new Slot(946,30,slotWidth,slotHeight+25,this);
-        blackStack = new Slot(946,430,slotWidth,slotHeight+25,this);
+        whiteBar = new Slot(517,150,slotWidth,200,this,false);        
+        blackBar = new Slot(517,350,slotWidth,200,this,false);
+        whiteStack = new Slot(946,30,slotWidth,slotHeight+25,this,false);
+        blackStack = new Slot(946,430,slotWidth,slotHeight+25,this,false);
         
         slotSet1 = new ArrayList<Slot>(6);
         slotSet2 = new ArrayList<Slot>(6);
         slotSet3 = new ArrayList<Slot>(6);
         slotSet4 = new ArrayList<Slot>(6);
         
-        for(int i = 0; i<6; i++){
+        for(int i=0; i<6; i++){
             
             
-            slotSet1.add(i, new Slot(slot1X + (i * 57), 30, slotWidth, slotHeight,this));
+            slotSet1.add(i, new Slot(slot1X + (i * 57), slot1Y, slotWidth, slotHeight,this));
             slotSet1.get(i).addMouseListener(mngr);
             slotSet1.get(i).setOpaque(true);
-            slotSet1.get(i).setBounds(slot1X + (i * 57), 30, slotWidth, slotHeight);
+            slotSet1.get(i).setBounds(slot1X + (i * 57), slot1Y, slotWidth, slotHeight);
             lp.add(slotSet1.get(i), new Integer(0),0);                    
         }
-        blackBar.addMouseListener(mngr);
+        for(int i=0; i<6; i++){
+            
+            
+            slotSet2.add(i, new Slot(slot2X + (i * 57), slot2Y, slotWidth, slotHeight,this));
+            slotSet2.get(i).addMouseListener(mngr);
+            slotSet2.get(i).setOpaque(true);
+            slotSet2.get(i).setBounds(slot2X + (i * 57), slot2Y, slotWidth, slotHeight);
+            lp.add(slotSet2.get(i), new Integer(0),0);                    
+        }
+        for(int i=0; i<6; i++){
+            
+            
+            slotSet3.add(i, new Slot(slot3X + (i * 57), slot3Y, slotWidth, slotHeight,this));
+            slotSet3.get(i).addMouseListener(mngr);
+            slotSet3.get(i).setOpaque(true);
+            slotSet3.get(i).setBounds(slot3X + (i * 57), slot3Y, slotWidth, slotHeight);
+            lp.add(slotSet3.get(i), new Integer(0),0);                    
+        }
+        for(int i=0; i<6; i++){
+            
+            
+            slotSet4.add(i, new Slot(slot4X + (i * 57), slot4Y, slotWidth, slotHeight,this));
+            slotSet4.get(i).addMouseListener(mngr);
+            slotSet4.get(i).setOpaque(true);
+            slotSet4.get(i).setBounds(slot4X + (i * 57), slot4Y, slotWidth, slotHeight);
+            lp.add(slotSet4.get(i), new Integer(0),0);                    
+        }
+
         blackBar.setOpaque(true);
         blackBar.setBounds(517,350,slotWidth,200);
         lp.add(blackBar, new Integer(0), 0); 
         
-        whiteBar.addMouseListener(mngr);
         whiteBar.setOpaque(true);
         whiteBar.setBounds(517,150,slotWidth,200);       
         lp.add(whiteBar, new Integer(0), 0);
         
-        whiteStack.addMouseListener(mngr);
         whiteStack.setOpaque(true);
         whiteStack.setBounds(946,30,slotWidth,slotHeight+25);       
         lp.add(whiteStack, new Integer(0), 0);
@@ -89,21 +119,59 @@ public class GamePanel extends JPanel {
         lp.add(blackStack, new Integer(0), 0); 
     }
     
-    public void initCheckers(){
+    public void initCheckers(Colors a, Colors b){
         
-        for(int i=0;i<6;i++){
-            
-            for(int j=0;j<3;j++){
-                slotSet1.get(i).addChecker(new Checker());
-            }
-            
+        whiteSet = new CheckerSet(a,this);
+        blackSet = new CheckerSet(b,this);
+        
+        for(int i=0;i<15;i++){        
+            if(i<5)
+               slotSet1.get(0).addChecker(whiteSet.getCheckerList().get(i));
+            else if(i<8)
+                slotSet2.get(4).addChecker(whiteSet.getCheckerList().get(i));
+            else if(i<13)
+                slotSet3.get(0).addChecker(whiteSet.getCheckerList().get(i));
+            else if(i<15)
+                slotSet4.get(5).addChecker(whiteSet.getCheckerList().get(i));
         }
-        
+        for(int i=0;i<15;i++){        
+            if(i<5)
+               slotSet4.get(0).addChecker(blackSet.getCheckerList().get(i));
+            else if(i<8)
+                slotSet3.get(4).addChecker(blackSet.getCheckerList().get(i));
+            else if(i<13)
+                slotSet2.get(0).addChecker(blackSet.getCheckerList().get(i));
+            else if(i<15)
+                slotSet1.get(5).addChecker(blackSet.getCheckerList().get(i));
+        }
     }
     
-    public void moveChecker(){
+    public void setStackAvaiable(Colors color){
         
+        if(color == Colors.WHITE || color == Colors.RED){
+            
+            whiteStack.addMouseListener(mngr);
+            whiteStack.setAvaiable(true);   
+        }
+        if(color == Colors.BLACK || color == Colors.BLUE){
+            
+            blackStack.addMouseListener(mngr);
+            blackStack.setAvaiable(true);   
+        }   
+    }
+    
+    public void setBarAvaiable(Colors color){
         
+        if(color == Colors.WHITE || color == Colors.RED){
+            
+            whiteBar.addMouseListener(mngr);
+            whiteBar.setAvaiable(true);   
+        }
+        if(color == Colors.BLACK || color == Colors.BLUE){
+            
+            blackBar.addMouseListener(mngr);
+            blackBar.setAvaiable(true);   
+        }   
     }
     
     public JLayeredPane getPane(){
@@ -122,7 +190,7 @@ public class GamePanel extends JPanel {
         lp.setMaximumSize(new java.awt.Dimension(1024, 804));
         lp.setMinimumSize(new java.awt.Dimension(1024, 804));
         initSlots();
-        initCheckers();
+        initCheckers(Colors.WHITE,Colors.BLACK);
 
         //lp.add(b.getCheckerSet1().getChecker(0),new Integer(2), 0);
 
@@ -141,15 +209,11 @@ public class GamePanel extends JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(lp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 476, Short.MAX_VALUE))
+            .addComponent(lp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(lp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
+            .addComponent(lp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
