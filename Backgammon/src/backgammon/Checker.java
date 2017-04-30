@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 public class Checker extends GameObject{
     
     private BufferedImage image;
-    private GamePanel panel;
+    private BoardPanel panel;
     private Colors colorID;
     private boolean hitFlag;
     private boolean bearOffFlag;
@@ -31,7 +31,7 @@ public class Checker extends GameObject{
         }
     }
     
-    public Checker(Colors color, GamePanel panel){
+    public Checker(Colors color, BoardPanel panel){
         
         this.panel = panel; 
         colorID = color;

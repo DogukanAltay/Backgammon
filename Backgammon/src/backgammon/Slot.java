@@ -15,7 +15,7 @@ import static javax.swing.JLayeredPane.DRAG_LAYER;
  */
 public class Slot extends GameObject{
     
-    GamePanel panel;
+    BoardPanel panel;
     private int positionX;
     private int positionY;
     private int width;   
@@ -30,7 +30,7 @@ public class Slot extends GameObject{
         super();
     }
     
-    public Slot(int x, int y, int width, int height, GamePanel panel){
+    public Slot(int x, int y, int width, int height, BoardPanel panel){
         super();
         this.positionX = x;
         this.positionY = y;
@@ -42,7 +42,7 @@ public class Slot extends GameObject{
         mouseActions();
     }
     
-    public Slot(int x, int y, int width, int height, GamePanel panel, boolean avaiable){
+    public Slot(int x, int y, int width, int height, BoardPanel panel, boolean avaiable){
         super();
         this.positionX = x;
         this.positionY = y;

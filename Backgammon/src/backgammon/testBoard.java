@@ -14,7 +14,7 @@ public class testBoard {
         
         JFrame f = new JFrame();
         
-        GamePanel gp = new GamePanel();
+        BoardPanel gp = new BoardPanel();
         //BoardPanel gp = new BoardPanel();
        // gp.setStackAvaiable(Colors.BLUE);
         f.add(gp);

@@ -1,6 +1,7 @@
 
 package backgammon;
 
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -9,6 +10,7 @@ public class SetGameMenu extends javax.swing.JPanel {
     private JPanel mainPanel;
     private JFrame mainFrame;
     
+    GamePanel gamePanel;
     private boolean selectR5;
     private boolean selectR3;
     private boolean selectR1;
@@ -266,6 +268,16 @@ public class SetGameMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_round5BtnActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        
+        gamePanel = new GamePanel();
+        
+        gamePanel.setMainMenu(mainPanel);
+        gamePanel.setMainFrame(mainFrame);
+        
+        mainFrame.setContentPane(gamePanel);
+        mainFrame.setSize(new Dimension(1280,1000));
+        mainFrame.invalidate();
+        mainFrame.validate();
         // TODO add your handling code here:
         
     }//GEN-LAST:event_playButtonActionPerformed
