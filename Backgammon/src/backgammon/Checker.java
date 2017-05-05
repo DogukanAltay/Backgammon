@@ -4,6 +4,8 @@ package backgammon;
 import java.awt.Color;
 import java.awt.Graphics;
 import static java.awt.PageAttributes.ColorType.COLOR;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +19,7 @@ public class Checker extends GameObject{
     private BufferedImage image;
     private BoardPanel panel;
     private Colors colorID;
+    private Color color;
     private boolean hitFlag;
     private boolean bearOffFlag;
     public final int diameter = 50;  
@@ -33,6 +36,7 @@ public class Checker extends GameObject{
     
     public Checker(Colors color, BoardPanel panel){
         
+        this.color = Color.GREEN;
         this.panel = panel; 
         colorID = color;
         String pngPath;
@@ -52,6 +56,15 @@ public class Checker extends GameObject{
         }
         //this.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkerBlack.jpg")));
     
+    }
+    
+    public void mouseActions(){
+        addMouseListener(new MouseAdapter(){
+            public void mouseDragged(MouseEvent e){
+                setColor(Color.RED);
+                setPosition(e.getX(),e.getY());
+            }
+        });
     }
     
     public void setPosition(int x, int y){
@@ -75,6 +88,10 @@ public class Checker extends GameObject{
         return hitFlag;
     }
     
+    public void setColor(Color a){
+        color=a;
+    }
+    
     public void setHitFlag(boolean hitFlag){
         this.hitFlag = hitFlag;
     }
@@ -88,8 +105,8 @@ public class Checker extends GameObject{
     }
     
     public void paintComponent(Graphics g){
-        g.setColor(Color.RED);
-        //g.drawOval(positionX, positionY, diameter, diameter);
+        g.setColor(color);
+        g.drawOval(positionX, positionY, diameter, diameter);
         //g.drawImage(image, 100, 100, diameter, diameter,null);
         g.drawImage(image, positionX, positionY, null);
     }

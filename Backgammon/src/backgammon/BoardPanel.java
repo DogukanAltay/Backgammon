@@ -67,7 +67,7 @@ public class BoardPanel extends JPanel {
         for(int i=0; i<6; i++){
             
             
-            slotSet1.add(i, new Slot(slot1X + (i * 57), slot1Y, slotWidth, slotHeight,this));
+            slotSet1.add(i, new Slot(slot1X + (i * 57), slot1Y, slotWidth, slotHeight,this,true));
             slotSet1.get(i).addMouseListener(mngr);
             slotSet1.get(i).setOpaque(true);
             slotSet1.get(i).setBounds(slot1X + (i * 57), slot1Y, slotWidth, slotHeight);
@@ -76,7 +76,7 @@ public class BoardPanel extends JPanel {
         for(int i=0; i<6; i++){
             
             
-            slotSet2.add(i, new Slot(slot2X + (i * 57), slot2Y, slotWidth, slotHeight,this));
+            slotSet2.add(i, new Slot(slot2X + (i * 57), slot2Y, slotWidth, slotHeight,this,true));
             slotSet2.get(i).addMouseListener(mngr);
             slotSet2.get(i).setOpaque(true);
             slotSet2.get(i).setBounds(slot2X + (i * 57), slot2Y, slotWidth, slotHeight);
@@ -85,7 +85,7 @@ public class BoardPanel extends JPanel {
         for(int i=0; i<6; i++){
             
             
-            slotSet3.add(i, new Slot(slot3X + (i * 57), slot3Y, slotWidth, slotHeight,this));
+            slotSet3.add(i, new Slot(slot3X + (i * 57), slot3Y, slotWidth, slotHeight,this,true));
             slotSet3.get(i).addMouseListener(mngr);
             slotSet3.get(i).setOpaque(true);
             slotSet3.get(i).setBounds(slot3X + (i * 57), slot3Y, slotWidth, slotHeight);
@@ -94,21 +94,24 @@ public class BoardPanel extends JPanel {
         for(int i=0; i<6; i++){
             
             
-            slotSet4.add(i, new Slot(slot4X + (i * 57), slot4Y, slotWidth, slotHeight,this));
+            slotSet4.add(i, new Slot(slot4X + (i * 57), slot4Y, slotWidth, slotHeight,this,true));
             slotSet4.get(i).addMouseListener(mngr);
             slotSet4.get(i).setOpaque(true);
             slotSet4.get(i).setBounds(slot4X + (i * 57), slot4Y, slotWidth, slotHeight);
             lp.add(slotSet4.get(i), new Integer(0),0);                    
         }
 
+        blackBar.addMouseListener(mngr);
         blackBar.setOpaque(true);
         blackBar.setBounds(517,350,slotWidth,200);
         lp.add(blackBar, new Integer(0), 0); 
         
+        whiteBar.addMouseListener(mngr);
         whiteBar.setOpaque(true);
         whiteBar.setBounds(517,150,slotWidth,200);       
         lp.add(whiteBar, new Integer(0), 0);
         
+        whiteStack.addMouseListener(mngr);
         whiteStack.setOpaque(true);
         whiteStack.setBounds(946,30,slotWidth,slotHeight+25);       
         lp.add(whiteStack, new Integer(0), 0);
@@ -123,7 +126,6 @@ public class BoardPanel extends JPanel {
         
         whiteSet = new CheckerSet(a,this);
         blackSet = new CheckerSet(b,this);
-        
         for(int i=0;i<15;i++){        
             if(i<5)
                slotSet1.get(0).addChecker(whiteSet.getCheckerList().get(i));
@@ -148,30 +150,32 @@ public class BoardPanel extends JPanel {
     
     public void setStackAvaiable(Colors color){
         
-        if(color == Colors.WHITE || color == Colors.RED){
-            
-            whiteStack.addMouseListener(mngr);
-            whiteStack.setAvaiable(true);   
-        }
-        if(color == Colors.BLACK || color == Colors.BLUE){
-            
-            blackStack.addMouseListener(mngr);
-            blackStack.setAvaiable(true);   
-        }   
+        if(color == Colors.WHITE || color == Colors.RED)           
+            whiteStack.setAvailable(true);   
+        
+        if(color == Colors.BLACK || color == Colors.BLUE)
+            blackStack.setAvailable(true);   
+           
     }
     
     public void setBarAvaiable(Colors color){
+       
+        if(color == Colors.WHITE || color == Colors.RED)         
+            whiteBar.setAvailable(true);   
         
-        if(color == Colors.WHITE || color == Colors.RED){
-            
-            whiteBar.addMouseListener(mngr);
-            whiteBar.setAvaiable(true);   
-        }
-        if(color == Colors.BLACK || color == Colors.BLUE){
-            
-            blackBar.addMouseListener(mngr);
-            blackBar.setAvaiable(true);   
-        }   
+        if(color == Colors.BLACK || color == Colors.BLUE)                     
+            blackBar.setAvailable(true);   
+         
+    }
+    
+    public void setSlotAvailable(Slot s){
+        
+        s.setAvailable(true);
+    }
+    
+    public void setSlotUnavailable(Slot s){
+        
+        s.setAvailable(false);
     }
     
     public JLayeredPane getPane(){

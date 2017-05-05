@@ -15,30 +15,32 @@ import java.awt.event.MouseListener;
  * @author dogukan
  */
 public class BoardInputManager extends MouseAdapter {
-    private Checker temp;
+    private Checker temp,asd;
     private Slot labelPressed, labelReleased;
+    private boolean control=false;
     public void mousePressed(MouseEvent e){
-        
-        labelPressed = (Slot)e.getSource();
-        
-        temp = labelPressed.peekChecker();
-        System.out.println(labelPressed.getX());
-        
+       
+        if(!control){
+            labelPressed = (Slot)e.getSource();
+            //temp = labelPressed.peekChecker();
+            control=true;
+        }
+        if(control&&labelPressed!=labelReleased){
+            if(labelReleased.isAvailable()){
+                /*if(temp!=null)
+                    labelReleased.addChecker(labelPressed.popChecker());*/
+                labelPressed.moveChecker(labelReleased);
+                control=false;
+            }                
+        }             
     }
     public void mouseDragged(MouseEvent e){
         
         temp.setPosition(e.getX(),e.getY());
         System.out.println("csc"+temp.positionX);   
     }
-    
-    public void mouseReleased(MouseEvent e){
-       
-        if(labelReleased.isAvaiable())
-            labelReleased.addChecker(labelPressed.popChecker());
-        System.out.println(labelReleased.getX());
-    }
+  
     public void mouseEntered(MouseEvent e) {
         labelReleased = (Slot)e.getSource();
-        System.out.println("asdas"+labelReleased.getX());
     }
 }
