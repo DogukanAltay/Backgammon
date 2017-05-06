@@ -21,11 +21,11 @@ public class Die extends GameObject{
         return value;
     }
     
-    public void roll(){
+    public int roll(){
         
         Random randGen = new Random();
     
-        value = randGen.nextInt(6) + 1;
+        return value = randGen.nextInt(6) + 1;
     }
     
 }

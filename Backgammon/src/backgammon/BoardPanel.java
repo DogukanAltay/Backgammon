@@ -27,6 +27,10 @@ public class BoardPanel extends JPanel {
     private ArrayList<Slot> slotSet4;
     private CheckerSet whiteSet, blackSet;
     
+    private Player player1,player2;
+    
+    private Die die1, die2;
+    
     private BoardInputManager mngr;
 
     public BoardPanel() {
@@ -36,10 +40,16 @@ public class BoardPanel extends JPanel {
            System.out.println("file error");
        }
         mngr = new BoardInputManager();
+        die1 = new Die();
+        die2 = new Die();
         initComponents();
         
     }
     
+    public void initPlayers(){
+        player1 = new Player("dogu", whiteSet);
+        player2 = new Player("armagan", blackSet);
+    }
     
     public void initSlots(){
         
@@ -176,6 +186,18 @@ public class BoardPanel extends JPanel {
     public void setSlotUnavailable(Slot s){
         
         s.setAvailable(false);
+    }
+    
+    public void showPlayableSlots(Slot s){
+        
+        int totalDie ;
+        
+        if(die1.getValue() != die2.getValue()){ // not a double roll
+           
+            totalDie = die1.getValue() + die2.getValue();
+            
+        }
+        
     }
     
     public JLayeredPane getPane(){

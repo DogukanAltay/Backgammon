@@ -48,6 +48,9 @@ public class CheckerSet extends GameObject{
     public Colors getColorID(){
         return colorID;
     }
+    public void setColorID(Colors color){
+        colorID = color;
+    }
       
     public String getListID(){
         return listID;

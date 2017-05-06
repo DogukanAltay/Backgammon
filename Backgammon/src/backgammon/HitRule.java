@@ -13,6 +13,10 @@ public class HitRule extends Rule{
     
     Rule safeRule;
     
+    public HitRule(){
+        super();
+    }
+    
     public HitRule(Slot source, Slot target){
         
         super(source, target);
