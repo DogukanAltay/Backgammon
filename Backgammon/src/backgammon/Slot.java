@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.*;
-import java.util.*;
+import java.util.*; 
 import javax.swing.*;
 import static javax.swing.JLayeredPane.DRAG_LAYER;
 
@@ -18,12 +18,14 @@ public class Slot extends GameObject{
     BoardPanel panel;
     private int positionX;
     private int positionY;
+    private int reversedY;
     private int width;   
     private int height;
     private Color borderColor;
     private Colors slotColor;
-    private boolean clicked=false;
-    private boolean avaiable;
+    private boolean clicked = false;
+    private boolean available;
+    private boolean isReversed;
 
     Stack<Checker> checkerStack = new Stack<Checker>();
     
@@ -31,16 +33,17 @@ public class Slot extends GameObject{
         super();
     }
       
-    public Slot(int x, int y, int width, int height, BoardPanel panel, boolean avaiable){
+    public Slot(int x, int y, int width, int height, BoardPanel panel, boolean available, boolean isReversed){
         super();
         this.positionX = x;
         this.positionY = y;
         this.width  = width;
         this.height = height;
-        borderColor = Color.GREEN;
-        slotColor = null;
+        this.borderColor = Color.GREEN;
+        this.slotColor = null;
         this.panel = panel;
-        this.avaiable = avaiable;
+        this.available = available;
+        this.isReversed = isReversed;
         mouseActions();
     }
     
@@ -100,34 +103,56 @@ public class Slot extends GameObject{
     
     public void paintComponent(Graphics g){
         
-        if(avaiable == false){
+        if(available == false){
             g.setColor(Color.BLUE);
         }else
-            g.setColor(borderColor);    
+            g.setColor(borderColor);
+        
         g.drawRect(0,0,width-1,height-1);
-       if(checkerStack.size()<7){
-           
-            for(int i=0;i<checkerStack.size();i++){
-           
-               //checkerStack.get(i).setPosition(3,y+(50*i));
-               checkerStack.get(i).setOpaque(true);
-               checkerStack.get(i).setBounds(positionX, positionY+(50*i), 50, 50);
-               panel.getPane().add(checkerStack.get(i), new Integer(1),0);
-               
-               //checkerStack.get(i).paintComponent(g);
-               
+       
+       if(!isReversed){
+            if(checkerStack.size()<7){
+
+                for(int i=0;i<checkerStack.size();i++){
+
+                   checkerStack.get(i).setOpaque(true);
+                   checkerStack.get(i).setBounds(positionX + 3, positionY+(50*i), 50, 50);
+                   panel.getPane().add(checkerStack.get(i), new Integer(1),0);
+                }
             }
-       }else{
-            for(int i=0;i<6;i++){
+            else{
+                for(int i=0;i<6;i++){
+
+                   checkerStack.get(i).setOpaque(true);
+                   checkerStack.get(i).setBounds(positionX + 3, positionY+(50*i), 50, 50);
+                   panel.getPane().add(checkerStack.get(i), new Integer(1),0);
+                }
+            }    
+       }
+       else{
+      
+            reversedY = positionY + 270;
            
-               //checkerStack.get(i).setPosition(3,y+(50*i));
-               checkerStack.get(i).setOpaque(true);
-               checkerStack.get(i).setBounds(positionX, positionY+(50*i), 50, 50);
-               panel.getPane().add(checkerStack.get(i), new Integer(1),0);
-                //checkerStack.get(i).paintComponent(g);
-                
+            if(checkerStack.size()<7){
+
+                for(int i = checkerStack.size()-1; i >= 0; i--){
+
+                   checkerStack.get(i).setOpaque(true);
+                   checkerStack.get(i).setBounds(positionX + 3, reversedY-(50*i), 50, 50);
+                   panel.getPane().add(checkerStack.get(i), new Integer(1),0);
+                }
             }
-       }      
+            else{
+                for(int i = 5; i >= 0; i--){
+
+                   checkerStack.get(i).setOpaque(true);
+                   checkerStack.get(i).setBounds(positionX + 3, reversedY-(50*i), 50, 50);
+                   panel.getPane().add(checkerStack.get(i), new Integer(1),0);
+                }
+            }
+       
+       }
+
        g.dispose();
     }
    
@@ -176,9 +201,9 @@ public class Slot extends GameObject{
         return positionY;
     }
     public boolean isAvailable(){
-        return avaiable;
+        return available;
     }
     public void setAvailable(boolean a){
-        avaiable = a;
+        available = a;
     }
 }
