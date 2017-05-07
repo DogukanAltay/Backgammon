@@ -16,7 +16,9 @@ public class SafeRule extends Rule{
     //private boolean ruleFlag;
     //private Slot targetSlot;
     //private Slot sourceSlot;
-     
+    public SafeRule(){
+        super();
+    } 
     public SafeRule(Slot source, Slot target){
         
         super(source, target);
@@ -26,9 +28,14 @@ public class SafeRule extends Rule{
     @Override
     public void ruleCondition(){
         
-        if(targetSlot.checkerStack.size() > 2)
+        if(targetSlot.getSlotColor()!= null){
+            if(targetSlot.getSlotColor() == sourceSlot.getSlotColor() || targetSlot.checkerStack.size() < 2 )
+                ruleFlag = true;
+            else
+                ruleFlag = false;      
+        }else
             ruleFlag = true;
-        else
-            ruleFlag = false;
+        
+        System.out.println("adasd");
     }
 }

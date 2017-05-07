@@ -24,6 +24,12 @@ public abstract class Rule {
     
    abstract void ruleCondition();
    
+   public void setSource(Slot s){
+       sourceSlot = s;
+   }
+   public void setTarget(Slot s){
+       targetSlot = s;
+   }
    public boolean getRuleFlag(){
        return ruleFlag;
    }

@@ -7,15 +7,13 @@ package backgammon;
 
 /**
  *
- * @author mertarmagan
+ * @author Metin
  */
-public class HitRule extends Rule{
-      
-    public HitRule(){
+public class ColorRule extends Rule{
+    public ColorRule(){
         super();
-    }
-    
-    public HitRule(Slot source, Slot target){
+    } 
+    public ColorRule(Slot source, Slot target){
         
         super(source, target);
         this.ruleCondition();
@@ -24,14 +22,14 @@ public class HitRule extends Rule{
     @Override
     public void ruleCondition(){
         
-        if(targetSlot.getSlotColor()!= null){
-            if(targetSlot.getSlotColor() == sourceSlot.getSlotColor() || targetSlot.checkerStack.size()== 1)// if safe cannot hit the checker,
-                ruleFlag = false;      // else we can hit it.
+    
+        if(targetSlot.getSlotColor()!=null){  
+            if(targetSlot.getSlotColor() != sourceSlot.getSlotColor())
+                ruleFlag = false;
             else
-                ruleFlag = true;
-        }else 
+                ruleFlag = true;  
+        }else
             ruleFlag = true;
-        
         System.out.println("adasd");
     }
 }

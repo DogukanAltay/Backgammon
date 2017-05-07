@@ -24,12 +24,14 @@ public class BoardPanel extends JPanel {
     private ArrayList<Slot> slotSet2;
     private ArrayList<Slot> slotSet3;
     private ArrayList<Slot> slotSet4;
+    private ArrayList<Slot> boardSet;
     private CheckerSet whiteSet, blackSet;
 
     private Player player1, player2;
 
     private Die die1, die2;
-
+    
+    private RuleController rules;
     private BoardInputManager mngr;
 
     public BoardPanel() {
@@ -38,10 +40,13 @@ public class BoardPanel extends JPanel {
         } catch (IOException e) {
             System.out.println("file error");
         }
-        mngr = new BoardInputManager();
+        mngr = new BoardInputManager(this);
         die1 = new Die();
         die2 = new Die();
+        rules = new RuleController();
+        //showPlayableSlots(boardSet.get(1));
         initComponents();
+        
 
     }
 
@@ -72,11 +77,12 @@ public class BoardPanel extends JPanel {
         slotSet2 = new ArrayList<Slot>(6);
         slotSet3 = new ArrayList<Slot>(6);
         slotSet4 = new ArrayList<Slot>(6);
+        boardSet = new ArrayList<Slot>(24);
         
         for(int i=0; i<6; i++){
             
             
-            slotSet1.add(i, new Slot(slot1X + (i * 57), slot1Y, slotWidth, slotHeight,this,true,false));
+            slotSet1.add(i, new Slot(slot1X + (i * 57), slot1Y, slotWidth, slotHeight,this,true,false));        
             slotSet1.get(i).addMouseListener(mngr);
             slotSet1.get(i).setOpaque(true);
             slotSet1.get(i).setBounds(slot1X + (i * 57), slot1Y, slotWidth, slotHeight);
@@ -108,6 +114,16 @@ public class BoardPanel extends JPanel {
             slotSet4.get(i).setOpaque(true);
             slotSet4.get(i).setBounds(slot4X + (i * 57), slot4Y, slotWidth, slotHeight);
             lp.add(slotSet4.get(i), new Integer(0),0);                    
+        }
+        for(int i=0;i<24;i++){
+            for(int j=5;j>=0;j--)
+                boardSet.add(slotSet1.get(j));
+            for(int j=5;j>=0;j--)
+                boardSet.add(slotSet2.get(j));
+            for(int j=0;j<6;j++)
+                boardSet.add(slotSet3.get(j));
+            for(int j=0;j<6;j++)
+                boardSet.add(slotSet3.get(j));
         }
 
         blackBar.addMouseListener(mngr);
@@ -196,15 +212,38 @@ public class BoardPanel extends JPanel {
     public void showPlayableSlots(Slot s) {
 
         int totalDie;
+        int value1 = 2;//die1.getValue();
+        int value2 = 1;//die2.getValue();
+        int[] values = {value1,value2};
+        int sourceLoc = boardSet.indexOf(s);
+        System.out.println(sourceLoc);
+        
+                
+        ArrayList<Slot> validSlots = new ArrayList<Slot>();
 
-        if (die1.getValue() != die2.getValue()) { // not a double roll
-
-            totalDie = die1.getValue() + die2.getValue();
-
+        if (value1 != value2) { // not a double roll
+                Slot target = boardSet.get(sourceLoc+value1);
+                rules.checkRules(s,target);
+                if(rules.playableFlag)
+                    validSlots.add(target);  
+            
         }
-
+        for(Slot m : validSlots){
+            System.out.println(m.getX());
+            setSlotUnavailable(m);
+        }    
     }
-
+    public void move(Slot source, Slot target){
+        
+        rules.checkRules(source,target);
+        if(!rules.hittableFlag)
+            if(target.getSlotColor()==Colors.WHITE || target.getSlotColor()==Colors.RED)
+                target.moveChecker(whiteBar);
+            else
+                target.moveChecker(blackBar);
+       
+        source.moveChecker(target);
+    }
     public JLayeredPane getPane() {
         return lp;
     }

@@ -205,5 +205,8 @@ public class Slot extends GameObject{
     }
     public void setAvailable(boolean a){
         available = a;
+        repaint();
+        revalidate();
+        panel.repaint();
     }
 }

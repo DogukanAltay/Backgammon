@@ -16,20 +16,26 @@ import java.awt.event.MouseListener;
  */
 public class BoardInputManager extends MouseAdapter {
     private Checker temp,asd;
+    private BoardPanel board;
     private Slot labelPressed, labelReleased;
     private boolean control=false;
+    public BoardInputManager(BoardPanel a){
+        board=a;
+    }
     public void mousePressed(MouseEvent e){
-       
+        
         if(!control){
             labelPressed = (Slot)e.getSource();
+            
             //temp = labelPressed.peekChecker();
+            board.showPlayableSlots(labelPressed);
             control=true;
         }
         if(control&&labelPressed!=labelReleased){
             if(labelReleased.isAvailable()){
                 /*if(temp!=null)
                     labelReleased.addChecker(labelPressed.popChecker());*/
-                labelPressed.moveChecker(labelReleased);
+                board.move(labelPressed, labelReleased);
                 control=false;
             }                
         }             
