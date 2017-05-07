@@ -269,7 +269,18 @@ public class SetGameMenu extends javax.swing.JPanel {
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         
+        
+        String playerID1 = playerIDTextField.getText();
+        String playerID2 = playerIDTextField1.getText();    
+        
         gamePanel = new GamePanel();
+        
+        gamePanel.setPlayerNames(playerID1, playerID2);
+        
+        int round = getRound();
+        gamePanel.setRound(round);
+        //gamePanel.updateCurrentRound(round);
+        
         
         gamePanel.setMainMenu(mainPanel);
         gamePanel.setMainFrame(mainFrame);
@@ -288,6 +299,17 @@ public class SetGameMenu extends javax.swing.JPanel {
     
     public void setMainFrame(JFrame mainFrame){
         this.mainFrame = mainFrame;
+    }
+    
+    public int getRound(){      
+        if(selectR1)
+            return 1;
+        else if(selectR3)
+            return 3;
+        else if(selectR5)
+            return 5;
+        else
+            return 0;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

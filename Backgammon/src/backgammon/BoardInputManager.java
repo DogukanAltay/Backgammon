@@ -32,7 +32,7 @@ public class BoardInputManager extends MouseAdapter {
             control=true;
         }
         if(control&&labelPressed!=labelReleased){
-            if(labelReleased.isAvailable()){
+            if(labelReleased.isAvailable()&&labelPressed.isAvailable()){
                 /*if(temp!=null)
                     labelReleased.addChecker(labelPressed.popChecker());*/
                 board.move(labelPressed, labelReleased);
