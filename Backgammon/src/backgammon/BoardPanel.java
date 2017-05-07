@@ -17,7 +17,8 @@ public class BoardPanel extends JPanel {
     private BufferedImage imageBoard;
     private final int WIDTH = 1000;
     private final int HEIGHT = 800;
-
+    private JPanel gamePanel;
+    
     private Slot whiteBar, blackBar;
     private Slot whiteStack, blackStack;
     private ArrayList<Slot> slotSet1;
@@ -28,6 +29,7 @@ public class BoardPanel extends JPanel {
     private CheckerSet whiteSet, blackSet;
 
     private Player player1, player2;
+    private String playerID1, playerID2;
 
     private Die die1, die2;
     
@@ -50,9 +52,14 @@ public class BoardPanel extends JPanel {
 
     }
 
+    public void setPlayerIDs(String player1, String player2){
+        this.playerID1 = player1;
+        this.playerID2 = player2;
+    }
+    
     public void initPlayers() {
-        player1 = new Player("dogu", whiteSet);
-        player2 = new Player("armagan", blackSet);
+        player1 = new Player(playerID1, whiteSet);
+        player2 = new Player(playerID2, blackSet);
     }
 
         public void initSlots(){
@@ -115,16 +122,16 @@ public class BoardPanel extends JPanel {
             slotSet4.get(i).setBounds(slot4X + (i * 57), slot4Y, slotWidth, slotHeight);
             lp.add(slotSet4.get(i), new Integer(0),0);                    
         }
-        for(int i=0;i<24;i++){
-            for(int j=5;j>=0;j--)
-                boardSet.add(slotSet1.get(j));
-            for(int j=5;j>=0;j--)
-                boardSet.add(slotSet2.get(j));
-            for(int j=0;j<6;j++)
-                boardSet.add(slotSet3.get(j));
-            for(int j=0;j<6;j++)
-                boardSet.add(slotSet3.get(j));
-        }
+        
+        for(int j=5;j>=0;j--)
+            boardSet.add(slotSet1.get(j));
+        for(int j=5;j>=0;j--)
+            boardSet.add(slotSet2.get(j));
+        for(int j=0;j<6;j++)
+            boardSet.add(slotSet3.get(j));
+        for(int j=0;j<6;j++)
+            boardSet.add(slotSet4.get(j));
+        
 
         blackBar.addMouseListener(mngr);
         blackBar.setOpaque(true);
@@ -236,7 +243,7 @@ public class BoardPanel extends JPanel {
     public void move(Slot source, Slot target){
         
         rules.checkRules(source,target);
-        if(!rules.hittableFlag)
+        if(rules.hittableFlag)
             if(target.getSlotColor()==Colors.WHITE || target.getSlotColor()==Colors.RED)
                 target.moveChecker(whiteBar);
             else
@@ -246,6 +253,24 @@ public class BoardPanel extends JPanel {
     }
     public JLayeredPane getPane() {
         return lp;
+    }
+    
+    public void setGamePanel(JPanel gp){
+        this.gamePanel = gp;
+    }
+    
+    
+    public void gameLoop(){
+      
+        boolean isFinished = false;
+        
+        while(!isFinished){
+            initPlayers();
+            
+            
+        }
+        
+        
     }
 
     @SuppressWarnings("unchecked")
