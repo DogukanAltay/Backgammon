@@ -40,13 +40,14 @@ public class BoardInputManager extends MouseAdapter {
             }                
         }             
     }
-    public void mouseDragged(MouseEvent e){
-        
-        temp.setPosition(e.getX(),e.getY());
-        System.out.println("csc"+temp.positionX);   
-    }
-  
     public void mouseEntered(MouseEvent e) {
         labelReleased = (Slot)e.getSource();
+    }
+    
+    public void mouseClicked(MouseEvent e){
+      /*  if(labelPressed.isAvailable()){
+            board.collectToStack(labelPressed);
+        }
+        */
     }
 }

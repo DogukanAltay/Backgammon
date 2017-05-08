@@ -26,9 +26,11 @@ public class BoardPanel extends JPanel {
     private ArrayList<Slot> slotSet3;
     private ArrayList<Slot> slotSet4;
     private ArrayList<Slot> boardSet;
+    private ArrayList<Slot> validSlots;
     private CheckerSet whiteSet, blackSet;
 
     private Player player1, player2;
+    private Player currentPlayer;
     private String playerID1, playerID2;
 
     private Die die1, die2;
@@ -220,23 +222,58 @@ public class BoardPanel extends JPanel {
 
         int totalDie;
         int value1 = 2;//die1.getValue();
-        int value2 = 1;//die2.getValue();
+        int value2 = 2;//die2.getValue();
         int[] values = {value1,value2};
         int sourceLoc = boardSet.indexOf(s);
         System.out.println(sourceLoc);
-        
+        Slot target;
                 
-        ArrayList<Slot> validSlots = new ArrayList<Slot>();
+        validSlots = new ArrayList<Slot>();
 
         if (value1 != value2) { // not a double roll
-                Slot target = boardSet.get(sourceLoc+value1);
-                rules.checkRules(s,target);
-                if(rules.playableFlag)
-                    validSlots.add(target);  
             
+            for(int i=0;i<2;i++){                
+                int controlLoc = sourceLoc+values[i];
+                
+                if(controlLoc<boardSet.size()){
+                    target = boardSet.get(controlLoc);
+                    rules.checkRules(s,target);
+                    if(rules.playableFlag)
+                        validSlots.add(target);  
+                }
+       
+            }
+            int controlLoc = sourceLoc+values[0]+values[1];
+            if(!validSlots.isEmpty()&& controlLoc<boardSet.size()){                
+                target = boardSet.get(sourceLoc+values[0]+values[1]);  
+                rules.checkRules(s, target);
+                if(rules.playableFlag)
+                    validSlots.add(target);
+            }
+        }else{
+            int controlLoc = sourceLoc + value1;
+            
+            if(controlLoc<boardSet.size()){
+                    target = boardSet.get(controlLoc);
+                    rules.checkRules(s,target);
+                    if(rules.playableFlag)
+                        validSlots.add(target);  
+                }
+            
+            for(int i=2;i<5;i++){
+                controlLoc = sourceLoc + (value1*i);
+                
+                if(controlLoc<boardSet.size() && !validSlots.isEmpty()){
+                    target = boardSet.get(controlLoc);
+                    rules.checkRules(s,target);
+                    if(rules.playableFlag)
+                        validSlots.add(target);  
+                }                        
+            }
+
         }
-        for(Slot m : validSlots){
-            System.out.println(m.getX());
+                
+        for(Slot m : validSlots){          
             setSlotUnavailable(m);
         }    
     }
@@ -251,6 +288,15 @@ public class BoardPanel extends JPanel {
        
         source.moveChecker(target);
     }
+    
+    public void collectToStack(Slot source){
+        
+        if(source.getSlotColor()==Colors.WHITE || source.getSlotColor()==Colors.RED)
+            move(source,whiteStack);
+        else
+            move(source,blackStack);
+    }
+    
     public JLayeredPane getPane() {
         return lp;
     }
@@ -259,6 +305,31 @@ public class BoardPanel extends JPanel {
         this.gamePanel = gp;
     }
     
+    public boolean isBarEmpty(Colors color){
+        
+        if(color == Colors.WHITE || color == Colors.RED)
+            return whiteBar.isStackEmpty();
+        else
+            return blackBar.isStackEmpty();
+    }
+    
+    public void turn(Player player){
+        
+        currentPlayer = player;
+        
+        roll();
+        
+        
+        
+               
+    }
+    public void isTurnPassed(){
+        
+    }
+    
+    public void passTurn(){
+        
+    }
     
     public void gameLoop(){
       
@@ -271,6 +342,11 @@ public class BoardPanel extends JPanel {
         }
         
         
+    }
+    
+    public void roll(){
+        die1.roll();
+        die2.roll();
     }
 
     @SuppressWarnings("unchecked")
