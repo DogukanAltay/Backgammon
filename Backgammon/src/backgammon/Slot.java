@@ -44,7 +44,7 @@ public class Slot extends GameObject{
         this.panel = panel;
         this.available = available;
         this.isReversed = isReversed;
-        mouseActions();
+        //mouseActions();
     }
     
     public void mouseActions(){
@@ -103,12 +103,13 @@ public class Slot extends GameObject{
     
     public void paintComponent(Graphics g){
         
-        if(available == false){
-            g.setColor(Color.BLUE);
-        }else
+        if(available == true){
             g.setColor(borderColor);
+            g.drawRect(0,0,width-1,height-1);
+        }
+            
         
-        g.drawRect(0,0,width-1,height-1);
+        
        
        if(!isReversed){
             if(checkerStack.size()<7){

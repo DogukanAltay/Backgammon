@@ -28,8 +28,10 @@ public class BoardInputManager extends MouseAdapter {
             labelPressed = (Slot)e.getSource();
             
             //temp = labelPressed.peekChecker();
-            board.showPlayableSlots(labelPressed);
-            control=true;
+            if(labelPressed.isAvailable()){
+                board.showPlayableSlots(labelPressed);
+                control=true;
+            }     
         }
         if(control&&labelPressed!=labelReleased){
             if(labelReleased.isAvailable()&&labelPressed.isAvailable()){
@@ -37,6 +39,7 @@ public class BoardInputManager extends MouseAdapter {
                     labelReleased.addChecker(labelPressed.popChecker());*/
                 board.move(labelPressed, labelReleased);
                 control=false;
+                board.isPlayed();
             }                
         }             
     }

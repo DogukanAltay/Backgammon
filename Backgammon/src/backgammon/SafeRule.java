@@ -35,7 +35,6 @@ public class SafeRule extends Rule{
                 ruleFlag = false;      
         }else
             ruleFlag = true;
-        
-        System.out.println("adasd");
+     
     }
 }

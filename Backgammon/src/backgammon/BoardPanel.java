@@ -31,7 +31,11 @@ public class BoardPanel extends JPanel {
 
     private Player player1, player2;
     private Player currentPlayer;
+    private Player nextPlayer;
     private String playerID1, playerID2;
+    
+    private boolean turnCheck;
+    private int dieLeft;
 
     private Die die1, die2;
     
@@ -50,8 +54,8 @@ public class BoardPanel extends JPanel {
         rules = new RuleController();
         //showPlayableSlots(boardSet.get(1));
         initComponents();
-        
-
+        setCurrentPlayer();
+     
     }
 
     public void setPlayerIDs(String player1, String player2){
@@ -91,7 +95,7 @@ public class BoardPanel extends JPanel {
         for(int i=0; i<6; i++){
             
             
-            slotSet1.add(i, new Slot(slot1X + (i * 57), slot1Y, slotWidth, slotHeight,this,true,false));        
+            slotSet1.add(i, new Slot(slot1X + (i * 57), slot1Y, slotWidth, slotHeight,this,false,false));        
             slotSet1.get(i).addMouseListener(mngr);
             slotSet1.get(i).setOpaque(true);
             slotSet1.get(i).setBounds(slot1X + (i * 57), slot1Y, slotWidth, slotHeight);
@@ -100,7 +104,7 @@ public class BoardPanel extends JPanel {
         for(int i=0; i<6; i++){
             
             
-            slotSet2.add(i, new Slot(slot2X + (i * 57), slot2Y, slotWidth, slotHeight,this,true,false));
+            slotSet2.add(i, new Slot(slot2X + (i * 57), slot2Y, slotWidth, slotHeight,this,false,false));
             slotSet2.get(i).addMouseListener(mngr);
             slotSet2.get(i).setOpaque(true);
             slotSet2.get(i).setBounds(slot2X + (i * 57), slot2Y, slotWidth, slotHeight);
@@ -109,7 +113,7 @@ public class BoardPanel extends JPanel {
         for(int i=0; i<6; i++){
             
             
-            slotSet3.add(i, new Slot(slot3X + (i * 57), slot3Y, slotWidth, slotHeight,this,true,true));
+            slotSet3.add(i, new Slot(slot3X + (i * 57), slot3Y, slotWidth, slotHeight,this,false,true));
             slotSet3.get(i).addMouseListener(mngr);
             slotSet3.get(i).setOpaque(true);
             slotSet3.get(i).setBounds(slot3X + (i * 57), slot3Y, slotWidth, slotHeight);
@@ -118,7 +122,7 @@ public class BoardPanel extends JPanel {
         for(int i=0; i<6; i++){
             
             
-            slotSet4.add(i, new Slot(slot4X + (i * 57), slot4Y, slotWidth, slotHeight,this,true,true));
+            slotSet4.add(i, new Slot(slot4X + (i * 57), slot4Y, slotWidth, slotHeight,this,false,true));
             slotSet4.get(i).addMouseListener(mngr);
             slotSet4.get(i).setOpaque(true);
             slotSet4.get(i).setBounds(slot4X + (i * 57), slot4Y, slotWidth, slotHeight);
@@ -217,6 +221,41 @@ public class BoardPanel extends JPanel {
 
         s.setAvailable(false);
     }
+    
+    public void setPlayerSlotsAvailable(Player player){
+        
+        if(player == player1){
+            
+            for(Slot m: boardSet){                 
+                if(m.getSlotColor()==Colors.WHITE || m.getSlotColor()==Colors.RED ) 
+                setSlotAvailable(m);               
+            }
+        }else{
+            for(Slot m: boardSet){                 
+                if(m.getSlotColor()==Colors.BLACK || m.getSlotColor()==Colors.BLUE ) 
+                setSlotAvailable(m);               
+            }
+        }
+        
+        
+    }
+    public void setPlayerSlotsUnavailable(Player player){
+        
+        if(player == player1){
+            
+            for(Slot m: boardSet){                 
+                if(m.getSlotColor()==Colors.WHITE || m.getSlotColor()==Colors.RED ) 
+                setSlotUnavailable(m);               
+            }
+        }else{
+            for(Slot m: boardSet){                 
+                if(m.getSlotColor()==Colors.BLACK || m.getSlotColor()==Colors.BLUE ) 
+                setSlotUnavailable(m);               
+            }
+        }
+        
+        
+    }
 
     public void showPlayableSlots(Slot s) {
 
@@ -274,18 +313,19 @@ public class BoardPanel extends JPanel {
         }
                 
         for(Slot m : validSlots){          
-            setSlotUnavailable(m);
+            setSlotAvailable(m);
         }    
     }
     public void move(Slot source, Slot target){
         
         rules.checkRules(source,target);
-        if(rules.hittableFlag)
+        if(rules.hittableFlag && dieLeft !=0)
             if(target.getSlotColor()==Colors.WHITE || target.getSlotColor()==Colors.RED)
                 target.moveChecker(whiteBar);
             else
                 target.moveChecker(blackBar);
        
+        dieLeft = boardSet.indexOf(target) - boardSet.indexOf(source);
         source.moveChecker(target);
     }
     
@@ -313,21 +353,46 @@ public class BoardPanel extends JPanel {
             return blackBar.isStackEmpty();
     }
     
-    public void turn(Player player){
+    public void turn(){
+              
+        setPlayerSlotsAvailable(currentPlayer);
+        if(isTurnPassed())
+            passTurn();
         
-        currentPlayer = player;
-        
-        roll();
-        
-        
-        
-               
+                   
     }
-    public void isTurnPassed(){
+    public boolean isTurnPassed(){
         
+        // player zarların hepsini oynadı mı oynamadı mı kontrol et
+        if(dieLeft == 0)
+            turnCheck = true;
+        else
+            turnCheck = false;
+        
+        return turnCheck;
+    }
+    
+    public boolean isPlayed(){
+        turnCheck = true;
+        
+        return turnCheck;
     }
     
     public void passTurn(){
+        
+        setPlayerSlotsUnavailable(currentPlayer);
+        nextPlayer = currentPlayer;
+        currentPlayer = nextPlayer;
+        turnCheck = false;
+               
+    }
+    
+    public void setCurrentPlayer(){
+        
+        if(die1.getValue()<die2.getValue())
+            currentPlayer = player1;
+        else
+            currentPlayer = player2;
         
     }
     
@@ -347,6 +412,9 @@ public class BoardPanel extends JPanel {
     public void roll(){
         die1.roll();
         die2.roll();
+        
+        dieLeft = die1.getValue()+die2.getValue();
+        
     }
 
     @SuppressWarnings("unchecked")

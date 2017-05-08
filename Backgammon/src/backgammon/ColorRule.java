@@ -30,6 +30,6 @@ public class ColorRule extends Rule{
                 ruleFlag = true;  
         }else
             ruleFlag = true;
-        System.out.println("adasd");
+
     }
 }

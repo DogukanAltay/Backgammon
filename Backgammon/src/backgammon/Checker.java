@@ -104,10 +104,7 @@ public class Checker extends GameObject{
         this.bearOffFlag = bearOffFlag;
     }
     
-    public void paintComponent(Graphics g){
-        g.setColor(color);
-        g.drawOval(positionX, positionY, diameter, diameter);
-        //g.drawImage(image, 100, 100, diameter, diameter,null);
+    public void paintComponent(Graphics g){     
         g.drawImage(image, positionX, positionY, null);
     }
 }

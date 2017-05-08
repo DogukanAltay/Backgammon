@@ -31,7 +31,6 @@ public class HitRule extends Rule{
                 ruleFlag = true;
         }else 
             ruleFlag = true;
-        
-        System.out.println("adasd");
+       
     }
 }
