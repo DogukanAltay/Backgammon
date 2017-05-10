@@ -29,6 +29,8 @@ public class BoardInputManager extends MouseAdapter {
             
             //temp = labelPressed.peekChecker();
             if(labelPressed.isAvailable() && !labelPressed.isStackEmpty()){
+                board.setAllSlotsUnavailable();
+                board.setSlotAvailable(labelPressed);
                 board.showPlayableSlots(labelPressed);
                 control=true;
             }     
@@ -37,9 +39,9 @@ public class BoardInputManager extends MouseAdapter {
             if(labelReleased.isAvailable()&&labelPressed.isAvailable()){
                 /*if(temp!=null)
                     labelReleased.addChecker(labelPressed.popChecker());*/
-                board.move(labelPressed, labelReleased);
+                board.moveChecker(labelPressed, labelReleased);
                 control=false;
-                board.isPlayed();
+                
                 
                 
             }                
