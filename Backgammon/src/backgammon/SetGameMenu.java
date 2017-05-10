@@ -43,6 +43,7 @@ public class SetGameMenu extends javax.swing.JPanel {
         colorPlayer1 = new javax.swing.JComboBox<>();
         colorPlayer2 = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(248, 255, 184));
 
@@ -139,6 +140,9 @@ public class SetGameMenu extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
+        jLabel4.setFont(new java.awt.Font("Lithos Pro Regular", 0, 50)); // NOI18N
+        jLabel4.setText("GAME SETUP");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,7 +151,9 @@ public class SetGameMenu extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(back))
+                        .addComponent(back)
+                        .addGap(318, 318, 318)
+                        .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(362, 362, 362)
                         .addComponent(jLabel1)
@@ -157,7 +163,7 @@ public class SetGameMenu extends javax.swing.JPanel {
                         .addComponent(round3Btn)
                         .addGap(18, 18, 18)
                         .addComponent(round5Btn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(383, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(155, 155, 155)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -191,7 +197,9 @@ public class SetGameMenu extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(back)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(back)
+                    .addComponent(jLabel4))
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(playerIDLabel)
@@ -204,7 +212,7 @@ public class SetGameMenu extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(colorPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(colorPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -278,7 +286,7 @@ public class SetGameMenu extends javax.swing.JPanel {
         gamePanel.setPlayerNames(playerID1, playerID2);
         
         int round = getRound();
-        gamePanel.setRound(round);
+        gamePanel.setTotalRound(round);
         //gamePanel.updateCurrentRound(round);
         
         
@@ -319,6 +327,7 @@ public class SetGameMenu extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton playButton;
     private javax.swing.JLabel playerIDLabel;

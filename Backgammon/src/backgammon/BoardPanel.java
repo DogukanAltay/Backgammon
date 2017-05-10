@@ -17,7 +17,7 @@ public class BoardPanel extends JPanel {
     private BufferedImage imageBoard;
     private final int WIDTH = 1000;
     private final int HEIGHT = 800;
-    private JPanel gamePanel;
+    private GamePanel gamePanel;
     
     private Slot whiteBar, blackBar;
     private Slot whiteStack, blackStack;
@@ -35,6 +35,7 @@ public class BoardPanel extends JPanel {
     private String playerID1, playerID2;
     
     private boolean turnCheck;
+    private boolean isRolled;
     private int dieLeft;
 
     private Die die1, die2;
@@ -54,6 +55,7 @@ public class BoardPanel extends JPanel {
         rules = new RuleController();
         //showPlayableSlots(boardSet.get(1));
         initComponents();
+        setPlayerIDs("first", "second");
         roll();
         setCurrentPlayer();
         turn();
@@ -191,7 +193,7 @@ public class BoardPanel extends JPanel {
         }
     }
 
-    public void setStackAvaiable(Colors color) {
+    public void setStackAvailable(Colors color) {
 
         if (color == Colors.WHITE || color == Colors.RED) {
             whiteStack.setAvailable(true);
@@ -203,7 +205,7 @@ public class BoardPanel extends JPanel {
 
     }
 
-    public void setBarAvaiable(Colors color) {
+    public void setBarAvailable(Colors color) {
 
         if (color == Colors.WHITE || color == Colors.RED) {
             whiteBar.setAvailable(true);
@@ -267,7 +269,7 @@ public class BoardPanel extends JPanel {
         int value2 = 2;//die2.getValue();
         int[] values = {value1,value2};
         int sourceLoc = boardSet.indexOf(s);
-        System.out.println(sourceLoc);
+        System.out.println("SourceSlotIndex: " + sourceLoc);
         Slot target;
                 
         validSlots = new ArrayList<Slot>();
@@ -344,7 +346,7 @@ public class BoardPanel extends JPanel {
         return lp;
     }
     
-    public void setGamePanel(JPanel gp){
+    public void setGamePanel(GamePanel gp){
         this.gamePanel = gp;
     }
     
@@ -415,6 +417,9 @@ public class BoardPanel extends JPanel {
     public void roll(){
         die1.roll();
         die2.roll();
+        System.out.print("Roll Btn Pressed -> ");
+        System.out.print("Die1: " + die1.getValue());
+        System.out.println(" Die2: " + die2.getValue());     
         
         dieLeft = die1.getValue()+die2.getValue();
         
@@ -466,7 +471,6 @@ public class BoardPanel extends JPanel {
     public void paintComponent(Graphics g) {
 
         g.drawImage(imageBoard, 0, 0, null);
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

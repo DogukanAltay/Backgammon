@@ -161,7 +161,14 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_howToPlayActionPerformed
 
     private void settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsActionPerformed
-
+        SettingsMenu setting = new SettingsMenu();
+        
+        setting.setMainMenu(mainPanel);
+        setting.setMainFrame(this);
+        
+        this.setContentPane(setting);
+        this.invalidate();
+        this.validate();
     }//GEN-LAST:event_settingsActionPerformed
 
     private void creditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditsActionPerformed

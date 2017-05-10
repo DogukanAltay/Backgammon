@@ -27,6 +27,9 @@ public class CreditsMenu extends javax.swing.JPanel {
         dogukan = new javax.swing.JLabel();
         omer = new javax.swing.JLabel();
         berkalp = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(204, 204, 255));
 
         back.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         back.setText("Back");
@@ -50,30 +53,37 @@ public class CreditsMenu extends javax.swing.JPanel {
         berkalp.setFont(new java.awt.Font("Segoe UI Semilight", 0, 30)); // NOI18N
         berkalp.setText("--> Berkalp Yılmaz");
 
+        jLabel1.setFont(new java.awt.Font("Lithos Pro Regular", 0, 50)); // NOI18N
+        jLabel1.setText("DEVELOPERS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(back)
+                .addGap(251, 251, 251)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(back))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(armagan)
-                            .addComponent(dogukan, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(omer, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(berkalp, javax.swing.GroupLayout.Alignment.LEADING))))
-                .addContainerGap(457, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(armagan)
+                        .addComponent(dogukan, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(omer, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(berkalp, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel1))
+                .addContainerGap(343, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(back)
-                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(back))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel1)))
+                .addGap(48, 48, 48)
                 .addComponent(armagan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dogukan)
@@ -81,7 +91,7 @@ public class CreditsMenu extends javax.swing.JPanel {
                 .addComponent(omer)
                 .addGap(18, 18, 18)
                 .addComponent(berkalp)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -106,6 +116,7 @@ public class CreditsMenu extends javax.swing.JPanel {
     private javax.swing.JButton back;
     private javax.swing.JLabel berkalp;
     private javax.swing.JLabel dogukan;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel omer;
     // End of variables declaration//GEN-END:variables
 }
