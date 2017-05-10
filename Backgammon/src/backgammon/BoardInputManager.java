@@ -40,6 +40,8 @@ public class BoardInputManager extends MouseAdapter {
                 board.move(labelPressed, labelReleased);
                 control=false;
                 board.isPlayed();
+                
+                
             }                
         }             
     }

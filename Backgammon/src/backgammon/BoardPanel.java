@@ -139,6 +139,7 @@ public class BoardPanel extends JPanel {
             boardSet.add(slotSet3.get(j));
         for(int j=0;j<6;j++)
             boardSet.add(slotSet4.get(j));
+
         
 
         blackBar.addMouseListener(mngr);
