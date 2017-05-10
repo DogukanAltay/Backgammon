@@ -28,7 +28,7 @@ public class BoardInputManager extends MouseAdapter {
             labelPressed = (Slot)e.getSource();
             
             //temp = labelPressed.peekChecker();
-            if(labelPressed.isAvailable()){
+            if(labelPressed.isAvailable() && !labelPressed.isStackEmpty()){
                 board.showPlayableSlots(labelPressed);
                 control=true;
             }     

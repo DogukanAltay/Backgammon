@@ -54,7 +54,9 @@ public class BoardPanel extends JPanel {
         rules = new RuleController();
         //showPlayableSlots(boardSet.get(1));
         initComponents();
+        roll();
         setCurrentPlayer();
+        turn();
      
     }
 
