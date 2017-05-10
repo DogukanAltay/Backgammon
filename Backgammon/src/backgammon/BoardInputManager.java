@@ -31,30 +31,29 @@ public class BoardInputManager extends MouseAdapter {
             if(labelPressed.isAvailable() && !labelPressed.isStackEmpty()){
                 board.setAllSlotsUnavailable();
                 board.setSlotAvailable(labelPressed);
-                board.showPlayableSlots(labelPressed);
-                control=true;
+                board.findPlayableSlots(labelPressed);
+                board.showPlayableSlots();
+                //control=true;
             }     
-        }
-        if(control&&labelPressed!=labelReleased){
-            if(labelReleased.isAvailable()&&labelPressed.isAvailable()){
-                /*if(temp!=null)
-                    labelReleased.addChecker(labelPressed.popChecker());*/
-                board.moveChecker(labelPressed, labelReleased);
-                control=false;
-                
-                
-                
-            }                
-        }             
+        }         
     }
     public void mouseEntered(MouseEvent e) {
         labelReleased = (Slot)e.getSource();
+         
     }
     
-    public void mouseClicked(MouseEvent e){
-      /*  if(labelPressed.isAvailable()){
-            board.collectToStack(labelPressed);
+    public void mouseReleased(MouseEvent e){
+        
+        if(!labelReleased.isAvailable()&&labelPressed.isAvailable()){
+            board.moveChecker(labelPressed,labelPressed);
+            board.unShowPlayableSlots();
         }
-        */
+        if(labelReleased.isAvailable()&&labelPressed.isAvailable()){
+
+                board.moveChecker(labelPressed, labelReleased);
+                board.unShowPlayableSlots();
+                System.out.println("test Mouse");
+            } 
     }
+       
 }

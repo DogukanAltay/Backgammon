@@ -38,7 +38,11 @@ public class GamePanel extends javax.swing.JPanel {
         currentRoundLabel = new javax.swing.JLabel();
         totalRoundTxt = new javax.swing.JLabel();
         currentRoundTxt = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        scoreLabel = new javax.swing.JLabel();
+        die1Label = new javax.swing.JLabel();
+        die2Label = new javax.swing.JLabel();
+        die1ValueLabel = new javax.swing.JLabel();
+        die2ValueLabel = new javax.swing.JLabel();
 
         setBackground(java.awt.SystemColor.activeCaption);
         setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -47,7 +51,8 @@ public class GamePanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1280, 1000));
         setRequestFocusEnabled(false);
 
-        boardPanel1.setGamePanel(this);
+        //boardPanel1.setGamePanel(this);
+        setDieText();
 
         rollBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         rollBtn.setText("Roll!");
@@ -75,8 +80,14 @@ public class GamePanel extends javax.swing.JPanel {
 
         currentRoundTxt.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel1.setText("Score: 1 - 0");
+        scoreLabel.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        scoreLabel.setText("Score: 1 - 0");
+
+        die1Label.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        die1Label.setText("Die1:");
+
+        die2Label.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        die2Label.setText("Die2:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,7 +102,17 @@ public class GamePanel extends javax.swing.JPanel {
                 .addComponent(playerIDLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
-                .addGap(582, 582, 582)
+                .addGap(373, 373, 373)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(die1Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(die1ValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(die2Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(die2ValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(116, 116, 116)
                 .addComponent(rollBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -107,7 +128,7 @@ public class GamePanel extends javax.swing.JPanel {
                         .addComponent(totalRoundTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel1)))
+                        .addComponent(scoreLabel)))
                 .addGap(452, 452, 452))
         );
         layout.setVerticalGroup(
@@ -116,7 +137,19 @@ public class GamePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(rollBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rollBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(die1Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(die1ValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(die2Label)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(die2ValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(1, 1, 1)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -135,15 +168,19 @@ public class GamePanel extends javax.swing.JPanel {
                         .addComponent(currentRoundTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(totalRoundTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(scoreLabel)
+                .addGap(39, 39, 39))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void rollBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollBtnActionPerformed
-      
-        boardPanel1.roll();
+        //rollBtn.setEnabled(boardPanel1.getRolled());
+        boardPanel1.roll();       
+        setDieText();
     }//GEN-LAST:event_rollBtnActionPerformed
+    public void setRollButton(){
+       rollBtn.setEnabled(boardPanel1.getRolled());
+    }
     
     public void setMainMenu(JPanel mainPanel){      
        this.mainPanel =  mainPanel;
@@ -168,6 +205,17 @@ public class GamePanel extends javax.swing.JPanel {
         return playerID2;
     }
     
+    public void setDieText(){
+        this.die1ValueLabel.setText("" + boardPanel1.getDie1());
+        this.die2ValueLabel.setText("" + boardPanel1.getDie2());
+        //setRollButton();
+        repaint();
+        revalidate();
+    }
+    public void setRoll(boolean a){
+        rollBtn.setEnabled(a);
+    }
+    
     public void setTotalRound(int totalRounds){
         this.totalRoundstr = "" + totalRounds;
         this.totalRoundTxt.setText(totalRoundstr);
@@ -182,10 +230,14 @@ public class GamePanel extends javax.swing.JPanel {
     private backgammon.BoardPanel boardPanel1;
     private javax.swing.JLabel currentRoundLabel;
     private javax.swing.JLabel currentRoundTxt;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel die1Label;
+    private javax.swing.JLabel die1ValueLabel;
+    private javax.swing.JLabel die2Label;
+    private javax.swing.JLabel die2ValueLabel;
     private javax.swing.JLabel playerIDLabel1;
     private javax.swing.JLabel playerIDLabel2;
     private javax.swing.JButton rollBtn;
+    private javax.swing.JLabel scoreLabel;
     private javax.swing.JLabel totalRoundLabel;
     private javax.swing.JLabel totalRoundTxt;
     // End of variables declaration//GEN-END:variables
