@@ -28,6 +28,7 @@ public class MainMenu extends javax.swing.JFrame {
         backgammonGame = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Backgammon Game");
         setLocation(new java.awt.Point(350, 200));
 
         mainPanel.setBackground(new java.awt.Color(60, 132, 62));

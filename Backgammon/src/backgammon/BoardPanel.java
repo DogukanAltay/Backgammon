@@ -30,13 +30,14 @@ public class BoardPanel extends JPanel {
     private CheckerSet whiteSet, blackSet;
 
     private Player player1, player2;
+    private int player1Score, player2Score;
     private Player currentPlayer;
     private Player nextPlayer;
     private String playerID1, playerID2;
     
     private boolean turnCheck;
     
-    private int totalRounds;
+    private int totalRound;
     private int currentRound;
    
     private int dieLeft;
@@ -51,23 +52,20 @@ public class BoardPanel extends JPanel {
         } catch (IOException e) {
             System.out.println("file error");
         }
-        gamePanel = gp;
+        currentRound = 1;
+        this.gamePanel = gp;
+        totalRound = gp.getTotalRound();
+        //totalRounds = gp.getTotalRounds();
         mngr = new BoardInputManager(this);
         die1 = new Die();
         die2 = new Die();
         rules = new RuleController();
-        //showPlayableSlots(boardSet.get(1));
+        
         initComponents();
         setPlayerIDs("first", "second");
-        totalRounds = 2;
-        /*roll();
-        setCurrentPlayer();
-        turn();*/
-        roll();
+        System.out.println("in boardpanel: total round: " + totalRound);
         gamePanel.setRoll(true);
-        gameLoop();
-        
-     
+        startRound();
     }
 
     public void setPlayerIDs(String player1, String player2){
@@ -78,6 +76,8 @@ public class BoardPanel extends JPanel {
     public void initPlayers() {
         player1 = new Player(playerID1, whiteSet);
         player2 = new Player(playerID2, blackSet);
+        this.player1Score = player1.getScore();
+        this.player2Score = player2.getScore();
     }
 
     public void initSlots(){
@@ -359,7 +359,7 @@ public class BoardPanel extends JPanel {
         for(Slot m : validSlots){          
             setSlotUnavailable(m);
         }
-        setPlayerSlotsAvailable(currentPlayer);
+        //setPlayerSlotsAvailable(currentPlayer);
     }
     public void moveChecker(Slot source, Slot target){
         
@@ -369,7 +369,7 @@ public class BoardPanel extends JPanel {
                 target.moveChecker(whiteBar);
             else
                 target.moveChecker(blackBar);
-        if(target == whiteBar || target == blackBar){
+        if(source == whiteBar || source == blackBar){
             if(currentPlayer == player2)
                 dieLeft = dieLeft - (boardSet.indexOf(target)+1);
             if(currentPlayer == player1)
@@ -382,18 +382,11 @@ public class BoardPanel extends JPanel {
         }else                
             dieLeft = dieLeft - Math.abs(boardSet.indexOf(target) - boardSet.indexOf(source));
         
-        System.out.println("dieleft " + dieLeft);
+        System.out.println("dieleft: " + dieLeft);
         validSlots.remove(target);
         System.out.println("target index" + boardSet.indexOf(target));
         source.moveChecker(target);
-        setSlotUnavailable(source);
-        /*if(target == whiteStack || target == blackStack)
-            if(currentPlayer == player1)
-                setSlotUnavailable(whiteStack);
-            if(currentPlayer == player2)
-                setSlotUnavailable(blackStack);
-        */
-        // STACKLERIN AÇILIP KAPANMASINA BAKMAMIZ LAZIM
+        
         if(!isMoveLeft())
             moveDone();
         else if (isBarEmpty(currentPlayer)){
@@ -451,26 +444,6 @@ public class BoardPanel extends JPanel {
             return blackBar.isStackEmpty();
     }
     
-    /*public void move(){
-        
-        roll();
-        setPlayerSlotsAvailable(currentPlayer);
-        if(isTurnPassed())
-            passTurn();
-        
-                   
-    }
-    public boolean isTurnPassed(){
-        
-        // player zarların hepsini oynadı mı oynamadı mı kontrol et
-        if(dieLeft == 0)
-            turnCheck = true;
-        else
-            turnCheck = false;
-        
-        return turnCheck;
-    }*/
-    
     public void moveDone(){
         if(isPlayerFinished(currentPlayer))
             endRound();
@@ -506,25 +479,22 @@ public class BoardPanel extends JPanel {
         nextPlayer = currentPlayer;
         currentPlayer = temp;
         gamePanel.setRoll(true);
-        /*
-        if(!isBarEmpty(currentPlayer)){
-            setPlayerSlotsUnavailable(currentPlayer);
-            setBarAvailable(currentPlayer);           
-        }else{
-            setBarUnavailable(currentPlayer);
-            setPlayerSlotsAvailable(currentPlayer);
-        } */           
-        //turnCheck = false;
+        
     }
     
     public void endRound(){
         
         if(!isGameFinished()){
             currentPlayer.setScore(currentPlayer.getScore()+1);
+            
+            if(currentPlayer == player1)
+                player1Score++;
+            else
+                player2Score++;
+            
             currentRound++;
-            initComponents();
-            roll();
-            gameLoop();
+            initComponents();            
+            startRound();
         }else
             System.out.println("finished");
         
@@ -532,12 +502,18 @@ public class BoardPanel extends JPanel {
     }
     
     public boolean isGameFinished(){
-        if(currentRound>totalRounds){
+        if(currentPlayer.getScore() == (totalRound/2)+1){
             return true;
         }else
             return false;
     }
     
+    public int getPlayer1Score(){
+        return player1Score;
+    }
+    public int getPlayer2Score(){
+        return player2Score;
+    }
     public void setCurrentPlayer(Player player){
         currentPlayer = player;        
     }
@@ -552,14 +528,13 @@ public class BoardPanel extends JPanel {
             currentPlayer = player2;
             nextPlayer = player1;
         }
-        setPlayerSlotsAvailable(currentPlayer);
+        //setPlayerSlotsAvailable(currentPlayer);
     }
     
-    public void gameLoop(){
-      
-        boolean isGameFinished = false;
-        boolean isRoundFinished = false;
-        
+    public void startRound(){
+
+        roll();
+        gamePanel.setRoll(true);
         setAllSlotsUnavailable();
         initPlayers();           
         setStartingPlayer();
@@ -616,7 +591,11 @@ public class BoardPanel extends JPanel {
     public int getDie2(){
         return die2.getValue();
     }
-
+    
+    public int getCurrentRound(){
+        return this.currentRound;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
