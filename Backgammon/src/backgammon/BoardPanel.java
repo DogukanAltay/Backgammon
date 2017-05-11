@@ -35,7 +35,6 @@ public class BoardPanel extends JPanel {
     private String playerID1, playerID2;
     
     private boolean turnCheck;
-    private boolean isRolled;
     
     private int totalRounds;
     private int currentRound;
@@ -46,12 +45,13 @@ public class BoardPanel extends JPanel {
     private RuleController rules;
     private BoardInputManager mngr;
 
-    public BoardPanel() {
+    public BoardPanel(GamePanel gp) {
         try {
             imageBoard = ImageIO.read(getClass().getResource("/images/board.jpg"));
         } catch (IOException e) {
             System.out.println("file error");
         }
+        gamePanel = gp;
         mngr = new BoardInputManager(this);
         die1 = new Die();
         die2 = new Die();
@@ -64,6 +64,7 @@ public class BoardPanel extends JPanel {
         setCurrentPlayer();
         turn();*/
         roll();
+        gamePanel.setRoll(true);
         gameLoop();
         
      
@@ -504,8 +505,7 @@ public class BoardPanel extends JPanel {
         temp = nextPlayer;
         nextPlayer = currentPlayer;
         currentPlayer = temp;
-        isRolled = false;
-        //gamePanel.setRoll(true);
+        gamePanel.setRoll(true);
         /*
         if(!isBarEmpty(currentPlayer)){
             setPlayerSlotsUnavailable(currentPlayer);
@@ -607,12 +607,7 @@ public class BoardPanel extends JPanel {
             setBarUnavailable(currentPlayer);
             setPlayerSlotsAvailable(currentPlayer);
         }            
-        //gamePanel.setRoll(false);
-        isRolled = true;
-    }
-    
-    public boolean getRolled(){
-        return isRolled;
+        gamePanel.setRoll(false);
     }
     
     public int getDie1(){

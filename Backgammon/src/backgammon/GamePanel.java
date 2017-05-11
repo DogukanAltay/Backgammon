@@ -31,7 +31,6 @@ public class GamePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        boardPanel1 = new backgammon.BoardPanel();
         rollBtn = new javax.swing.JButton();
         playerIDLabel1 = new javax.swing.JLabel();
         playerIDLabel2 = new javax.swing.JLabel();
@@ -44,6 +43,7 @@ public class GamePanel extends javax.swing.JPanel {
         die2Label = new javax.swing.JLabel();
         die1ValueLabel = new javax.swing.JLabel();
         die2ValueLabel = new javax.swing.JLabel();
+        boardPanel1 = new backgammon.BoardPanel(this);
 
         setBackground(java.awt.SystemColor.activeCaption);
         setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -51,9 +51,6 @@ public class GamePanel extends javax.swing.JPanel {
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(1280, 1000));
         setRequestFocusEnabled(false);
-
-        //boardPanel1.setGamePanel(this);
-        setDieText();
 
         rollBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         rollBtn.setText("Roll!");
@@ -89,6 +86,8 @@ public class GamePanel extends javax.swing.JPanel {
 
         die2Label.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         die2Label.setText("Die2:");
+
+        setDieText();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -152,9 +151,7 @@ public class GamePanel extends javax.swing.JPanel {
                                         .addGap(1, 1, 1)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(boardPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(boardPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addComponent(playerIDLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -179,10 +176,7 @@ public class GamePanel extends javax.swing.JPanel {
         boardPanel1.roll();       
         setDieText();
     }//GEN-LAST:event_rollBtnActionPerformed
-    public void setRollButton(){
-       rollBtn.setEnabled(boardPanel1.getRolled());
-    }
-    
+
     public void setMainMenu(JPanel mainPanel){      
        this.mainPanel =  mainPanel;
     }
@@ -209,7 +203,7 @@ public class GamePanel extends javax.swing.JPanel {
     public void setDieText(){
         this.die1ValueLabel.setText("" + boardPanel1.getDie1());
         this.die2ValueLabel.setText("" + boardPanel1.getDie2());
-        //setRollButton();
+        
         repaint();
         revalidate();
     }

@@ -134,12 +134,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="backgammon.BoardPanel" name="boardPanel1">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new backgammon.BoardPanel()"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="//boardPanel1.setGamePanel(this);&#xa;setDieText();"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JButton" name="rollBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -226,6 +220,12 @@
     <Component class="javax.swing.JLabel" name="die1ValueLabel">
     </Component>
     <Component class="javax.swing.JLabel" name="die2ValueLabel">
+    </Component>
+    <Component class="backgammon.BoardPanel" name="boardPanel1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new backgammon.BoardPanel(this)"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="setDieText();"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
