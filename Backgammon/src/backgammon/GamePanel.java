@@ -15,6 +15,7 @@ public class GamePanel extends javax.swing.JPanel {
     private String playerID1, playerID2;
     private String totalRoundstr, currentRoundstr;
     private Die die1, die2;
+    private int totalRound;
     private int die1Val, die2Val;
 
     public GamePanel() {

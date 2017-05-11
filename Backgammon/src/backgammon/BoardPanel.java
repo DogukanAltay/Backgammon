@@ -36,6 +36,9 @@ public class BoardPanel extends JPanel {
     
     private boolean turnCheck;
     private boolean isRolled;
+    
+    private int totalRounds;
+    private int currentRound;
    
     private int dieLeft;
     private Die die1, die2;
@@ -56,6 +59,7 @@ public class BoardPanel extends JPanel {
         //showPlayableSlots(boardSet.get(1));
         initComponents();
         setPlayerIDs("first", "second");
+        totalRounds = 2;
         /*roll();
         setCurrentPlayer();
         turn();*/
@@ -292,79 +296,52 @@ public class BoardPanel extends JPanel {
         validSlots = new ArrayList<Slot>();
         ArrayList<Integer> values = new ArrayList<Integer>();
         
-        
-        if(totalDie == value1)
+        if(value1 == value2){
+            values.add(value1);
+          
+        }else if(totalDie == value1)
             values.add(value1);
         else if(totalDie == value2)
             values.add(value2);
-        else{
+        else {
             values.add(value1);
             values.add(value2);
         }
+        
+        
             
         int sourceLoc = boardSet.indexOf(s);
         System.out.println("SourceSlotIndex: " + sourceLoc);
         Slot target;
                 
-        if (value1 != value2) { // not a double roll
-            int controlLoc;
-                             
-            for(int m: values){
-                
-                if(currentPlayer == player2)
-                    controlLoc = sourceLoc+m;
-                else
-                    controlLoc = sourceLoc-m;
-                
-                if(sourceLoc == -1 && currentPlayer == player2){
-                    controlLoc = m-1;
-                }
-                if(sourceLoc == -1 && currentPlayer == player1)
-                    controlLoc = boardSet.size()-(m);
-                
-                if(isPlayerBearOff(currentPlayer) && currentPlayer == player1 && sourceLoc+1 <= m){
-                    validSlots.add(whiteStack);
-                }
-                if(isPlayerBearOff(currentPlayer) && currentPlayer == player2 && (boardSet.size()- (sourceLoc)) <= m){
-                    validSlots.add(blackStack);
-                }
-                
-                if(controlLoc<boardSet.size() && controlLoc>=0){
-                    target = boardSet.get(controlLoc);
-                    rules.checkRules(s,target);
-                    if(rules.playableFlag || rules.hittableFlag)
-                        validSlots.add(target);  
-                }
-       
-            }          
-        }else{
-            int controlLoc;
-                       
+        
+        int controlLoc;
+
+        for(int m: values){
+
             if(currentPlayer == player2)
-                controlLoc = sourceLoc + value1;
+                controlLoc = sourceLoc+m;
             else
-                controlLoc = sourceLoc - value1;
-            
+                controlLoc = sourceLoc-m;
+
+            if(sourceLoc == -1 && currentPlayer == player2){
+                controlLoc = m-1;
+            }
+            if(sourceLoc == -1 && currentPlayer == player1)
+                controlLoc = boardSet.size()-(m);
+
+            if(isPlayerBearOff(currentPlayer) && currentPlayer == player1 && sourceLoc+1 <= m){
+                validSlots.add(whiteStack);
+            }
+            if(isPlayerBearOff(currentPlayer) && currentPlayer == player2 && (boardSet.size()- (sourceLoc)) <= m){
+                validSlots.add(blackStack);
+            }
+
             if(controlLoc<boardSet.size() && controlLoc>=0){
-                    target = boardSet.get(controlLoc);
-                    rules.checkRules(s,target);
-                    if(rules.playableFlag || rules.hittableFlag)
-                        validSlots.add(target);  
-                }
-            
-            for(int i=2;i<5;i++){
-                
-                if(currentPlayer == player2)
-                    controlLoc = sourceLoc + (value1*i);
-                else
-                    controlLoc = sourceLoc - (value1*i);
-                
-                if(controlLoc<boardSet.size() && !validSlots.isEmpty() && controlLoc>=0){
-                    target = boardSet.get(controlLoc);
-                    rules.checkRules(s,target);
-                    if(rules.playableFlag || rules.hittableFlag)
-                        validSlots.add(target);  
-                }                        
+                target = boardSet.get(controlLoc);
+                rules.checkRules(s,target);
+                if(rules.playableFlag || rules.hittableFlag)
+                    validSlots.add(target);  
             }
 
         }
@@ -380,7 +357,8 @@ public class BoardPanel extends JPanel {
                 
         for(Slot m : validSlots){          
             setSlotUnavailable(m);
-        } 
+        }
+        setPlayerSlotsAvailable(currentPlayer);
     }
     public void moveChecker(Slot source, Slot target){
         
@@ -390,7 +368,7 @@ public class BoardPanel extends JPanel {
                 target.moveChecker(whiteBar);
             else
                 target.moveChecker(blackBar);
-        if(boardSet.indexOf(source) == -1){
+        if(target == whiteBar || target == blackBar){
             if(currentPlayer == player2)
                 dieLeft = dieLeft - (boardSet.indexOf(target)+1);
             if(currentPlayer == player1)
@@ -407,11 +385,21 @@ public class BoardPanel extends JPanel {
         validSlots.remove(target);
         System.out.println("target index" + boardSet.indexOf(target));
         source.moveChecker(target);
-        
+        setSlotUnavailable(source);
+        /*if(target == whiteStack || target == blackStack)
+            if(currentPlayer == player1)
+                setSlotUnavailable(whiteStack);
+            if(currentPlayer == player2)
+                setSlotUnavailable(blackStack);
+        */
+        // STACKLERIN AÇILIP KAPANMASINA BAKMAMIZ LAZIM
         if(!isMoveLeft())
             moveDone();
-        else if (isBarEmpty(currentPlayer))
+        else if (isBarEmpty(currentPlayer)){
             setPlayerSlotsAvailable(currentPlayer);
+            setBarUnavailable(currentPlayer);
+        }
+            
             
     }
     
@@ -482,8 +470,31 @@ public class BoardPanel extends JPanel {
         return turnCheck;
     }*/
     
-    public void moveDone(){       
-        passTurn();            
+    public void moveDone(){
+        if(isPlayerFinished(currentPlayer))
+            endRound();
+        else
+            passTurn();            
+    }
+    
+    public boolean isPlayerFinished(Player player){
+        int count=0;
+        if(player == player1){
+            for(Slot m: boardSet){
+                if(m.getSlotColor() == Colors.WHITE || m.getSlotColor() == Colors.RED )
+                    count++;
+            }
+        }else{
+            for(Slot m: boardSet){
+                if(m.getSlotColor() == Colors.BLACK || m.getSlotColor() == Colors.BLUE )
+                    count++;
+            }
+        }
+        
+        if(count == 0)
+            return true;
+        else
+            return false;
     }
     
     public void passTurn(){
@@ -504,6 +515,27 @@ public class BoardPanel extends JPanel {
             setPlayerSlotsAvailable(currentPlayer);
         } */           
         //turnCheck = false;
+    }
+    
+    public void endRound(){
+        
+        if(!isGameFinished()){
+            currentPlayer.setScore(currentPlayer.getScore()+1);
+            currentRound++;
+            initComponents();
+            roll();
+            gameLoop();
+        }else
+            System.out.println("finished");
+        
+        
+    }
+    
+    public boolean isGameFinished(){
+        if(currentRound>totalRounds){
+            return true;
+        }else
+            return false;
     }
     
     public void setCurrentPlayer(Player player){

@@ -44,10 +44,7 @@ public class BoardInputManager extends MouseAdapter {
     
     public void mouseReleased(MouseEvent e){
         
-        if(!labelReleased.isAvailable()&&labelPressed.isAvailable()){
-            board.moveChecker(labelPressed,labelPressed);
-            board.unShowPlayableSlots();
-        }
+        
         if(labelReleased.isAvailable()&&labelPressed.isAvailable()){
 
                 board.moveChecker(labelPressed, labelReleased);
